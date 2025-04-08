@@ -1,0 +1,31 @@
+---
+title: "Project"
+author: "Sarah Sussman"
+date: "2025-04-08"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+How to retrive USGS data in R: https://doi-usgs.github.io/dataRetrieval/ 
+search parameter codes: https://help.waterdata.usgs.gov/parameter_cd_nm
+- for example, discharge in cubic feet per second is 00060
+
+```{r}
+install.packages("dataRetrieval")
+library("dataRetrieval")
+
+?readNWISuv
+#(readNWISuv(siteNumbers, parameterCD, startDate = "", endDate = "", tz = "UTC))
+
+# Retrieve data for USGS gauage #03451500, French Broad River at Asheville
+readNWISuv(siteNumbers = "03451500", parameterCd = "00060",startDate = "2024-03-27", endDate = "2025-03-27", tz = "UTC" )
+
+```
+```{r}
+# plot
+
+```
+
