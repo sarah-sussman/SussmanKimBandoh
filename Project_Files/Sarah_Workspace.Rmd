@@ -1,0 +1,222 @@
+---
+title: "Workspace"
+author: "Sarah Sussman"
+date: "2025-04-27"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+**Setup**
+```{r}
+# Set your working directory
+library(here)
+here()
+
+# Load your packages
+library(tidyverse)
+library("dataRetrieval")
+library(dplyr)
+library(lubridate)
+
+# Set your ggplot theme
+
+#Load your datasets
+#(readNWISuv(siteNumbers, parameterCD, startDate = "", endDate = "", tz = "UTC))
+
+# Discharge
+## Madison County gauges
+### September 2023 - March 2024 (before)
+FBR_HotSprings.discharge.before <- readNWISuv(siteNumbers = "03454500",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+FBR_Marshall.discharge.before <-readNWISuv(siteNumbers = "03453500",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+### September 2024 - March 2025 (after)
+FBR_HotSprings.discharge.after <- readNWISuv(siteNumbers = "03454500",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+
+FBR_Marshall.discharge.after <-readNWISuv(siteNumbers = "03453500",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+## Buncombe County
+### September 2023 - March 2024 (before)
+FBR_Asheville.discharge.before <- readNWISuv(siteNumbers = "03451500",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+BeetreeCreek_Swannanoa.discharge.before <- readNWISuv(siteNumbers = "03450000",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+NFSwannanoa_Walkertown.discharge.before <- readNWISuv(siteNumbers = "0344894205",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+Swannanoa_Biltmore.discharge.before <- readNWISuv(siteNumbers = "03451000",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+### September 2024 - March 2025 (after)
+FBR_Asheville.discharge.after <- readNWISuv(siteNumbers = "03451500",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+BeetreeCreek_Swannanoa.discharge.after <- readNWISuv(siteNumbers = "03450000",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+NFSwannanoa_Walkertown.discharge.after <- readNWISuv(siteNumbers = "0344894205",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+Swannanoa_Biltmore.discharge.after <- readNWISuv(siteNumbers = "03451000",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+
+## Henderson County
+### September 2023 - March 2024 (before)
+FBR_Fletcher.discharge.before <- readNWISuv(siteNumbers = "03447687",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+FBR_Blantyre.discharge.before <- readNWISuv(siteNumbers = "03443000",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+FBR_Rosman.discharge.before <-readNWISuv(siteNumbers = "03439000",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+
+### September 2024 - March 2025 (after)
+FBR_Fletcher.discharge.after <- readNWISuv(siteNumbers = "03447687",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+FBR_Blantyre.discharge.after <- readNWISuv(siteNumbers = "03443000",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+FBR_Rosman.discharge.after <-readNWISuv(siteNumbers = "03439000",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+
+
+```
+**Clean Data**
+```{r}
+#Rename column names and delete data qualifier column
+## X_00060_00000 to discharge_cfs
+FBR_HotSprings.discharge.before <- FBR_HotSprings.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_HotSprings.discharge.after <- FBR_HotSprings.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Marshall.discharge.before <- FBR_Marshall.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+  
+FBR_Marshall.discharge.after <- FBR_Marshall.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Asheville.discharge.before <- FBR_Asheville.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Asheville.discharge.after <- FBR_Asheville.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+BeetreeCreek_Swannanoa.discharge.before <- BeetreeCreek_Swannanoa.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+BeetreeCreek_Swannanoa.discharge.after <- BeetreeCreek_Swannanoa.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+NFSwannanoa_Walkertown.discharge.before <- NFSwannanoa_Walkertown.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+NFSwannanoa_Walkertown.discharge.after <- NFSwannanoa_Walkertown.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+Swannanoa_Biltmore.discharge.before <- Swannanoa_Biltmore.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+Swannanoa_Biltmore.discharge.after <- Swannanoa_Biltmore.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Fletcher.discharge.before <- FBR_Fletcher.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Fletcher.discharge.after <- FBR_Fletcher.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Blantyre.discharge.before <- FBR_Blantyre.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Blantyre.discharge.after <- FBR_Blantyre.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Rosman.discharge.before <- FBR_Rosman.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Rosman.discharge.after <- FBR_Rosman.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+# Create daily discharge dataset using mean
+FBR_HotSprings.Dailydischarge.before <- FBR_HotSprings.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup
+
+FBR_HotSprings.Dailydischarge.after <- FBR_HotSprings.discharge.after %>%
+mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup
+
+```
+
