@@ -123,3 +123,91 @@ FBR_Rosman.discharge.after <-readNWISuv(siteNumbers = "03439000",
 
 
 *Turbidity*
+
+
+**Cleanup**
+*Discharge*
+```{r}
+#Rename column names and delete data qualifier column
+## X_00060_00000 to discharge_cfs
+FBR_HotSprings.discharge.before <- FBR_HotSprings.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_HotSprings.discharge.after <- FBR_HotSprings.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Marshall.discharge.before <- FBR_Marshall.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+  
+FBR_Marshall.discharge.after <- FBR_Marshall.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Asheville.discharge.before <- FBR_Asheville.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Asheville.discharge.after <- FBR_Asheville.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+BeetreeCreek_Swannanoa.discharge.before <- BeetreeCreek_Swannanoa.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+BeetreeCreek_Swannanoa.discharge.after <- BeetreeCreek_Swannanoa.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+NFSwannanoa_Walkertown.discharge.before <- NFSwannanoa_Walkertown.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+NFSwannanoa_Walkertown.discharge.after <- NFSwannanoa_Walkertown.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+Swannanoa_Biltmore.discharge.before <- Swannanoa_Biltmore.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+Swannanoa_Biltmore.discharge.after <- Swannanoa_Biltmore.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Fletcher.discharge.before <- FBR_Fletcher.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Fletcher.discharge.after <- FBR_Fletcher.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Blantyre.discharge.before <- FBR_Blantyre.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Blantyre.discharge.after <- FBR_Blantyre.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Rosman.discharge.before <- FBR_Rosman.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Rosman.discharge.after <- FBR_Rosman.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+```
+
+
+*pH*
+
+
+
+
+*Turbidity*
+
