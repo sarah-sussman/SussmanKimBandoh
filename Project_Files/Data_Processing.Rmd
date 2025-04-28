@@ -451,9 +451,9 @@ FBR_Rosman.Monthlydischarge.after <- FBR_Rosman.Dailydischarge.after %>%
 
 
 *pH*
-
+Can use same workflow as discharge
 
 
 
 *Turbidity*
-
+Can use same workflow as discharge
