@@ -210,13 +210,111 @@ FBR_HotSprings.Dailydischarge.before <- FBR_HotSprings.discharge.before %>%
   mutate(date = as_date(dateTime)) %>% #Extracting date
   group_by(date) %>%
   summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
-  ungroup
+  ungroup()
 
 FBR_HotSprings.Dailydischarge.after <- FBR_HotSprings.discharge.after %>%
-mutate(date = as_date(dateTime)) %>% #Extracting date
+  mutate(date = as_date(dateTime)) %>% #Extracting date
   group_by(date) %>%
   summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
-  ungroup
+  ungroup()
 
+FBR_Marshall.Dailydischarge.before <- FBR_Marshall.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_Marshall.Dailydischarge.after <- FBR_Marshall.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_Asheville.Dailydischarge.before <- FBR_Asheville.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+  
+FBR_Asheville.Dailydischarge.after <- FBR_Asheville.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+BeetreeCreek_Swannanoa.Dailydischarge.before <- BeetreeCreek_Swannanoa.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+ BeetreeCreek_Swannanoa.Dailydischarge.after<- BeetreeCreek_Swannanoa.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+ 
+NFSwannanoa_Walkertown.Dailydischarge.before  <- NFSwannanoa_Walkertown.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+NFSwannanoa_Walkertown.Dailydischarge.after <- NFSwannanoa_Walkertown.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+Swannanoa_Biltmore.Dailydischarge.before <- Swannanoa_Biltmore.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+Swannanoa_Biltmore.Dailydischarge.after <- Swannanoa_Biltmore.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_Fletcher.Dailydischarge.before <- FBR_Fletcher.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_Fletcher.Dailydischarge.after <- FBR_Fletcher.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_Blantyre.Dailydischarge.before <- FBR_Blantyre.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_Blantyre.Dailydischarge.after <- FBR_Blantyre.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_Rosman.Dailydischarge.before <- FBR_Rosman.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_Rosman.Dailydischarge.after <- FBR_Rosman.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+# Create monthly discharge using mean
+  
 ```
 
