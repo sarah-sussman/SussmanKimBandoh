@@ -1,0 +1,125 @@
+**Setup**
+```{r setup}
+# Set working directory
+library(here)
+here()
+
+# Load packages
+library(tidyverse)
+library("dataRetrieval")
+library(dplyr)
+library(lubridate)
+```
+
+**Load datasets**
+*Discharge*
+```{r}
+# Madison County gauges
+### September 2023 - March 2024 (before)
+FBR_HotSprings.discharge.before <- readNWISuv(siteNumbers = "03454500",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+FBR_Marshall.discharge.before <-readNWISuv(siteNumbers = "03453500",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+### September 2024 - March 2025 (after)
+FBR_HotSprings.discharge.after <- readNWISuv(siteNumbers = "03454500",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+
+FBR_Marshall.discharge.after <-readNWISuv(siteNumbers = "03453500",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+## Buncombe County
+### September 2023 - March 2024 (before)
+FBR_Asheville.discharge.before <- readNWISuv(siteNumbers = "03451500",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+BeetreeCreek_Swannanoa.discharge.before <- readNWISuv(siteNumbers = "03450000",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+NFSwannanoa_Walkertown.discharge.before <- readNWISuv(siteNumbers = "0344894205",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+Swannanoa_Biltmore.discharge.before <- readNWISuv(siteNumbers = "03451000",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+### September 2024 - March 2025 (after)
+FBR_Asheville.discharge.after <- readNWISuv(siteNumbers = "03451500",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+BeetreeCreek_Swannanoa.discharge.after <- readNWISuv(siteNumbers = "03450000",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+NFSwannanoa_Walkertown.discharge.after <- readNWISuv(siteNumbers = "0344894205",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+Swannanoa_Biltmore.discharge.after <- readNWISuv(siteNumbers = "03451000",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+
+## Henderson County
+### September 2023 - March 2024 (before)
+FBR_Fletcher.discharge.before <- readNWISuv(siteNumbers = "03447687",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+FBR_Blantyre.discharge.before <- readNWISuv(siteNumbers = "03443000",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+FBR_Rosman.discharge.before <-readNWISuv(siteNumbers = "03439000",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+
+### September 2024 - March 2025 (after)
+FBR_Fletcher.discharge.after <- readNWISuv(siteNumbers = "03447687",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+FBR_Blantyre.discharge.after <- readNWISuv(siteNumbers = "03443000",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+FBR_Rosman.discharge.after <-readNWISuv(siteNumbers = "03439000",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+```
+
+*pH*
+
+
+
+*Turbidity*
