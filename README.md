@@ -6,12 +6,15 @@
 <Delete the text inside the brackets when formatting your file.>
 
 ## Summary
+The SussmanKimBandoh repository is the final course project repository for the class ENV 872.
 
 <describe the purpose of this repository, the information it contains, and any relevant analysis goals. What, why, where, when, how?>
 
 ## Investigators
+Sarah Sussman, MEM student, sarah.sussman@duke.edu
+Akosua Bandoh, MEM student,akosua.bandoh@duke.edu
+Yeeun Kim, MEM student, yeeun.kim@duke.edu
 
-<name(s), affiliation(s), contact information, roles (if applicable)>
 
 ## Keywords
 
