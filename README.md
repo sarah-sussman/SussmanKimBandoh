@@ -17,8 +17,10 @@ Yeeun Kim, MEM student, yeeun.kim@duke.edu
 
 
 ## Keywords
+Hurricane Helene
+USGS
+Discharge
 
-<add relevant keywords here>
 
 ## Database Information
 
