@@ -1,0 +1,508 @@
+**Setup**
+```{r setup}
+# Set working directory
+library(here)
+here()
+
+# Load packages
+library(tidyverse)
+library("dataRetrieval")
+library(dplyr)
+library(lubridate)
+```
+
+```{r}
+library(dataRetrieval)
+
+# Specify site ID and date range
+site <- "0344894205"
+start <- "2023-09-27"
+end <- "2024-03-27"
+
+# Retrieve all available data information for the site
+site_info <- whatNWISdata(siteNumber = site)
+
+# Filter data that overlaps with the specified time period
+available_during_period <- subset(site_info, 
+                                  begin_date <= end & end_date >= start)
+# Extract unique parameter codes
+unique_parm <- unique(available_during_period$parm_cd)
+
+# Retrieve parameter names for the codes
+parm_info <- readNWISpCode(unique_parm)
+
+# Filter only turbidity-related parameters
+turbidity_info <- parm_info %>%
+  filter(grepl("Turbidity", parameter_nm, ignore.case = TRUE))
+
+# Print results
+print(turbidity_info)
+```
+```{r}
+library(dataRetrieval)
+library(dplyr)
+
+site_numbers <- c(
+  "03454500", "03453500", "03451500", "03450000", "0344894205",
+  "03451000", "03447687", "03443000", "03439000"
+)
+
+all_available_parameters <- data.frame()
+
+for (site in site_numbers) {
+  site_info <- tryCatch(
+    whatNWISdata(siteNumber = site),
+    error = function(e) return(NULL)
+  )
+  
+  if (!is.null(site_info)) {
+    site_info <- site_info %>%
+      filter(!is.na(count_nu) & count_nu > 0) %>%
+      mutate(site_no = site)  # site ID 열 추가
+    all_available_parameters <- bind_rows(all_available_parameters, site_info)
+  }
+}
+
+unique_parms <- unique(all_available_parameters$parm_cd)
+
+parm_info <- readNWISpCode(unique_parms)
+
+final_result <- all_available_parameters %>%
+  left_join(parm_info, by = c("parm_cd" = "parameter_cd")) %>%
+  select(site_no, parm_cd, parameter_nm, count_nu, begin_date, end_date)
+
+print(final_result)
+```
+
+
+**Load datasets**
+*Turbidity*
+```{r}
+# Madison County gauges
+### September 2023 - March 2024 (before)
+FBR_HotSprings.turbidity.before <- readNWISuv(siteNumbers = "03454500",
+                                       parameterCd = "00075",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+FBR_Marshall.turbidity.before <-readNWISuv(siteNumbers = "03453500",
+                                       parameterCd = "00076",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+### September 2024 - March 2025 (after)
+FBR_HotSprings.turbidity.after <- readNWISuv(siteNumbers = "03454500",
+                                       parameterCd = "00076",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+
+FBR_Marshall.turbidity.after <-readNWISuv(siteNumbers = "03453500",
+                                       parameterCd = "00076",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+## Buncombe County
+### September 2023 - March 2024 (before)
+FBR_Asheville.turbidity.before <- readNWISuv(siteNumbers = "03451500",
+                                       parameterCd = "00076",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+BeetreeCreek_Swannanoa.turbidity.before <- readNWISuv(siteNumbers = "03450000",
+                                       parameterCd = "00076",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+NFSwannanoa_Walkertown.turbidity.before <- readNWISuv(siteNumbers = "0344894205",
+                                       parameterCd = "00076",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+Swannanoa_Biltmore.turbidity.before <- readNWISuv(siteNumbers = "03451000",
+                                       parameterCd = "00076",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+### September 2024 - March 2025 (after)
+FBR_Asheville.turbidity.after <- readNWISuv(siteNumbers = "03451500",
+                                       parameterCd = "00076",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+BeetreeCreek_Swannanoa.turbidity.after <- readNWISuv(siteNumbers = "03450000",
+                                       parameterCd = "00076",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+NFSwannanoa_Walkertown.turbidity.after <- readNWISuv(siteNumbers = "0344894205",
+                                       parameterCd = "00076",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+Swannanoa_Biltmore.turbidity.after <- readNWISuv(siteNumbers = "03451000",
+                                       parameterCd = "00076",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+
+## Henderson County
+### September 2023 - March 2024 (before)
+FBR_Fletcher.turbidity.before <- readNWISuv(siteNumbers = "03447687",
+                                       parameterCd = "00076",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+FBR_Blantyre.turbidity.before <- readNWISuv(siteNumbers = "03443000",
+                                       parameterCd = "00076",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+FBR_Rosman.turbidity.before <-readNWISuv(siteNumbers = "03439000",
+                                       parameterCd = "00076",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+
+### September 2024 - March 2025 (after)
+FBR_Fletcher.turbidity.after <- readNWISuv(siteNumbers = "03447687",
+                                       parameterCd = "00076",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+FBR_Blantyre.turbidity.after <- readNWISuv(siteNumbers = "03443000",
+                                       parameterCd = "00076",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+FBR_Rosman.turbidity.after <-readNWISuv(siteNumbers = "03439000",
+                                       parameterCd = "00076",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+```
+
+
+**Cleanup**
+*Turbidity*
+Rename turbidity column and delete unneccesary columnn
+```{r}
+#Rename column names and delete data qualifier column
+## X_00076_00000 to discharge_cfs
+FBR_HotSprings.turbidity.before <- FBR_HotSprings.turbidity.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_HotSprings.turbidity.after <- FBR_HotSprings.turbidity.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Marshall.turbidity.before <- FBR_Marshall.turbidity.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+  
+FBR_Marshall.turbidity.after <- FBR_Marshall.turbidity.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Asheville.turbidity.before <- FBR_Asheville.turbidity.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Asheville.turbidity.after <- FBR_Asheville.turbidity.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+BeetreeCreek_Swannanoa.turbidity.before <- BeetreeCreek_Swannanoa.turbidity.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+BeetreeCreek_Swannanoa.turbidity.after <- BeetreeCreek_Swannanoa.turbidity.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+NFSwannanoa_Walkertown.turbidity.before <- NFSwannanoa_Walkertown.turbidity.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+NFSwannanoa_Walkertown.turbidity.after <- NFSwannanoa_Walkertown.turbidity.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+Swannanoa_Biltmore.turbidity.before <- Swannanoa_Biltmore.turbidity.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+Swannanoa_Biltmore.turbidity.after <- Swannanoa_Biltmore.turbidity.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Fletcher.turbidity.before <- FBR_Fletcher.turbidity.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Fletcher.turbidity.after <- FBR_Fletcher.turbidity.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Blantyre.turbidity.before <- FBR_Blantyre.turbidity.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Blantyre.turbidity.after <- FBR_Blantyre.turbidity.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Rosman.turbidity.before <- FBR_Rosman.turbidity.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+
+FBR_Rosman.turbidity.after <- FBR_Rosman.turbidity.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+```
+
+Create mean daily discharge datasets for before and after time periods
+```{r}
+# Create daily discharge dataset using mean
+FBR_HotSprings.Dailydischarge.before <- FBR_HotSprings.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_HotSprings.Dailydischarge.after <- FBR_HotSprings.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_Marshall.Dailydischarge.before <- FBR_Marshall.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_Marshall.Dailydischarge.after <- FBR_Marshall.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_Asheville.Dailydischarge.before <- FBR_Asheville.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+  
+FBR_Asheville.Dailydischarge.after <- FBR_Asheville.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+BeetreeCreek_Swannanoa.Dailydischarge.before <- BeetreeCreek_Swannanoa.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+ BeetreeCreek_Swannanoa.Dailydischarge.after<- BeetreeCreek_Swannanoa.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+ 
+NFSwannanoa_Walkertown.Dailydischarge.before  <- NFSwannanoa_Walkertown.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+NFSwannanoa_Walkertown.Dailydischarge.after <- NFSwannanoa_Walkertown.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+Swannanoa_Biltmore.Dailydischarge.before <- Swannanoa_Biltmore.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+Swannanoa_Biltmore.Dailydischarge.after <- Swannanoa_Biltmore.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_Fletcher.Dailydischarge.before <- FBR_Fletcher.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_Fletcher.Dailydischarge.after <- FBR_Fletcher.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_Blantyre.Dailydischarge.before <- FBR_Blantyre.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_Blantyre.Dailydischarge.after <- FBR_Blantyre.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_Rosman.Dailydischarge.before <- FBR_Rosman.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_Rosman.Dailydischarge.after <- FBR_Rosman.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+```
+
+Create monthly discharge datasets for before and after time periods
+```{r}
+# Create monthly discharge using mean
+
+FBR_HotSprings.Monthlydischarge.before <- FBR_HotSprings.Dailydischarge.before %>%
+  mutate(year = year(date),
+         month = month(date)) %>%
+  group_by(year,month) %>%
+  summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+
+FBR_HotSprings.Monthlydischarge.after <- FBR_HotSprings.Dailydischarge.after %>%
+  mutate(year = year(date),
+         month = month(date)) %>%
+  group_by(year,month) %>%
+  summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+
+FBR_Marshall.Monthlydischarge.before <- FBR_Marshall.Dailydischarge.before %>%
+  mutate(year = year(date),
+         month = month(date)) %>%
+  group_by(year,month) %>%
+  summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_Marshall.Monthlydischarge.after <- FBR_Marshall.Dailydischarge.after %>%
+  mutate(year = year(date),
+         month = month(date)) %>%
+  group_by(year,month) %>%
+  summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_Asheville.Monthlydischarge.before <- FBR_Asheville.Dailydischarge.before %>%
+  mutate(year = year(date),
+         month = month(date)) %>%
+  group_by(year,month) %>%
+  summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_Asheville.Monthlydischarge.after <- FBR_Asheville.Dailydischarge.after %>%
+  mutate(year = year(date),
+         month = month(date)) %>%
+  group_by(year,month) %>%
+  summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+BeetreeCreek_Swannanoa.Monthlydischarge.before <- BeetreeCreek_Swannanoa.Dailydischarge.before %>%
+  mutate(year = year(date),
+         month = month(date)) %>%
+  group_by(year,month) %>%
+  summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+BeetreeCreek_Swannanoa.Monthlydischarge.after <- BeetreeCreek_Swannanoa.Dailydischarge.after %>%
+  mutate(year = year(date),
+         month = month(date)) %>%
+  group_by(year,month) %>%
+  summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+NFSwannanoa_Walkertown.Monthlydischarge.before <- NFSwannanoa_Walkertown.Dailydischarge.before %>%
+  mutate(year = year(date),
+         month = month(date)) %>%
+  group_by(year,month) %>%
+  summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+NFSwannanoa_Walkertown.Monthlydischarge.after <- NFSwannanoa_Walkertown.Dailydischarge.after %>%
+  mutate(year = year(date),
+         month = month(date)) %>%
+  group_by(year,month) %>%
+  summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+Swannanoa_Biltmore.Monthlydischarge.before <- Swannanoa_Biltmore.Dailydischarge.before %>%
+  mutate(year = year(date),
+         month = month(date)) %>%
+  group_by(year,month) %>%
+  summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+Swannanoa_Biltmore.Monthlydischarge.after <- Swannanoa_Biltmore.Dailydischarge.after %>%
+  mutate(year = year(date),
+         month = month(date)) %>%
+  group_by(year,month) %>%
+  summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+  
+FBR_Fletcher.Monthlydischarge.before <- FBR_Fletcher.Dailydischarge.before %>%
+  mutate(year = year(date),
+         month = month(date)) %>%
+  group_by(year,month) %>%
+  summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_Fletcher.Monthlydischarge.after <- FBR_Fletcher.Dailydischarge.after %>%
+  mutate(year = year(date),
+         month = month(date)) %>%
+  group_by(year,month) %>%
+  summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_Blantyre.Monthlydischarge.before <- FBR_Blantyre.Dailydischarge.before %>%
+  mutate(year = year(date),
+         month = month(date)) %>%
+  group_by(year,month) %>%
+  summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_Blantyre.Monthlydischarge.after <- FBR_Blantyre.Dailydischarge.after %>%
+  mutate(year = year(date),
+         month = month(date)) %>%
+  group_by(year,month) %>%
+  summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_Rosman.Monthlydischarge.before <- FBR_Rosman.Dailydischarge.before %>%
+  mutate(year = year(date),
+         month = month(date)) %>%
+  group_by(year,month) %>%
+  summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+
+FBR_Rosman.Monthlydischarge.after <- FBR_Rosman.Dailydischarge.after %>%
+  mutate(year = year(date),
+         month = month(date)) %>%
+  group_by(year,month) %>%
+  summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
+  ungroup()
+```
