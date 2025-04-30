@@ -1,9 +1,4 @@
-# <Repository Title>
-<Instructions: copy and paste this template into your project README file (found in the parent folder of the repository). Fill in relevant information as requested.>
-
-<General notes: add as much information as is relevant for your repository. Some overarching guidelines are provided, but feel free to expand on these guidelines.>
-<More resources found here: https://www.dataone.org/all-best-practices>
-<Delete the text inside the brackets when formatting your file.>
+# <SussmanKimBandoh>
 
 ## Summary
 The SussmanKimBandoh repository is the final course project repository for the class ENV 872. The respository contains files for data processing, exploration, and analysis. We processed discharge data from 10 USGS stream gages before (Sept. 27,  2023 - March 27, 2024) and after (Sept. 27, 2024 - March 27, 2025) Hurricane Helene made landfall in Western NC. Our main research question is did discharge increase in the French Broad and Swannanoa Rivers after Hurricane Helene? If so, is an increase in discharge long-term, or is just in the days after the hurricane (Sept 27, 2024)? We address these research questions through calculating the mean daily and mean monthly discharge for each time period at each USGS gage location.
@@ -37,17 +32,28 @@ The Project_Files folder contains 6 .rmd files.
 - Data_Processing: File where the data was cleaned.
 - Final_Project_Report: The final report for the course project.
 
+File naming conventions
+river_city_variable_timeperiod
 
-<describe the folders contained in the repository, including what type of files they contain>
-
-<describe the formats of files for the various purposes contained in the repository>
-
-<describe your file naming conventions>
+ex: FBR_Marshall_discharge_before - this file is for the USGS gage in the French Broad River in Marshall, NC. The data is for discharge and the time period is before the hurricane (Sept 27, 2023 - March 27, 2024).
 
 ## Metadata
+For raw USGS discharge data:
+- agency_cd : agency that collected the data
+- site_no: gage id number
+- dateTime: Day and time of day observation took place
+- X_00060_00000: discharge in cfs
+- X_00060_00000_cd: indicates the status of the observation, if it has been reviewed or not
+- tz_cd: Timezone the date and time column is in
 
-<For each data file in the repository, describe the data contained in each column. Include the column name, a description of the information, the class of data, and any units associated with the data. Create a list or table for each data file.> 
+For processed USGS discharge data
+- date: date of observation
+- mean_daily_discharge_cfs: the mean daily discharge in cfs of that date
+- mean_monthly_discharge_cfs: the mean monthly discharge of the month
+- month: month the mean monthly discharge is referring to
+- time_period: the before (2023-2024) or after (2024-2025) period
+- name: name of gage
+- ID_number: Unique USGS gae ID number
 
 ## Scripts and code
-
-<list any software scripts/code contained in the repository and a description of their purpose.>
+N/A
