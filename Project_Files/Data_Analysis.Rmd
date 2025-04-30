@@ -1,0 +1,22 @@
+*STL Decomposition for Monthly Streamflow Analysis*
+```{r}
+# Load necessary libraries
+library(tidyverse)
+library(lubridate)
+
+# Combine and sort data by year and month
+monthly_df <- monthly_combined_all_sites %>%
+  arrange(year, month)
+
+# Create a time series object for STL decomposition
+monthly_ts <- ts(monthly_combined_all_sites$mean_monthly_discharge_cfs, 
+                 start = c(min(monthly_combined_all_sites$year), min(monthly_combined_all_sites$month)), 
+                 frequency = 12)
+
+# Perform STL decomposition with periodic seasonal component
+monthly_stl <- stl(monthly_ts, s.window = "periodic")
+
+# Plot the decomposition result
+plot(monthly_stl, main = "STL Decomposition of Monthly Discharge")
+```
+
