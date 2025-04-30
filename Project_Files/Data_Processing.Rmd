@@ -968,5 +968,15 @@ ggplot(FBR_Rosman.Monthlydischarge.combined,
        y = "Mean Monthly Discharge (cfs)")
 ```
 
+Create gage location dataframe
+```{r}
+gage_locations <- data.frame(
+  ID_number = c("03454500", "03453500", "03451500", "03450000", "0344894205", "03451000", "03447687", "03443000", "03439000"),
+  latitude = c(35.88991667, 35.78638889, 35.60888889, 35.65305556, 35.68569444, 35.5683333, 35.42916667, 35.29916667, 35.1433333),
+  longitude = c(-82.821, -82.6608333, -82.5780556, -82.4052778, -82.3324167, -82.5447222, -82.5525, -82.62388889, -82.8247222),
+  stringsAsFactors = TRUE
+)
+write.csv(gage_locations, here("Data", "Raw", "gage_locations.csv"), row.names = FALSE)
+```
 
 

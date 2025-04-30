@@ -10,6 +10,8 @@ library("dataRetrieval")
 library(dplyr)
 library(lubridate)
 library(ggplot2)
+library(mapview)
+library(sf)
 ```
 
 **Explore using plots**
@@ -284,3 +286,18 @@ The percent change ranged from +163% at Rosman (USGS 03439000) to +926% at Swann
 with the largest increases observed at sites with lower pre-hurricane discharge.
 
 These results suggest that Hurricane Helene affected local hydrology, likely increasing runoff and streamflow in the following months. They also highlight how extreme weather events can alter river conditions, especially in areas with varied terrain and land use.
+
+
+
+Map gages
+```{r}
+gage_locations_sf <- st_as_sf(gage_locations,
+                              coords = c("longitude", "latitude"), 
+                              crs = 4269)
+mapview(gage_locations_sf, 
+        zcol = "ID_number", 
+        label = gage_locations_sf$ID_number,
+        cex = 4,
+        layer.name = "USGS Gage IDs")
+```
+

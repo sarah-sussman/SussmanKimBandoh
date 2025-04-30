@@ -23,7 +23,7 @@ Discharge data from each gage was retrieved from the USGS using the 'dataRetriva
 The project has two folders: Data and Project_Files
 
 The Data folder contains two folders: Raw and Processed
-- Raw: Contains the USGS data after it had been retrieved from USGS using the 'dataRetrieval' package.
+- Raw: Contains the USGS data after it had been retrieved from USGS using the 'dataRetrieval' package. Includes csv titled "gage_locations" that has each gage and it's latitude and longitude.
 - Processed: Contains the mean daily discharge and mean monthly discharge for each gage, as well as the combined files for each gage.
 
 The Project_Files folder contains 6 .rmd files.

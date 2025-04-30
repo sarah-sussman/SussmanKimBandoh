@@ -15,6 +15,8 @@ library(tidyverse)
 library("dataRetrieval")
 library(dplyr)
 library(lubridate)
+library(mapview)
+library(sf)
 # Set your ggplot theme
 
 # Load your datasets
