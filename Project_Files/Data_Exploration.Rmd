@@ -9,6 +9,7 @@ library(tidyverse)
 library("dataRetrieval")
 library(dplyr)
 library(lubridate)
+library(ggplot2)
 ```
 
 **Explore using plots**
@@ -209,3 +210,77 @@ ggplot(FBR_Rosman.Monthlydischarge.combined,
        y = "Mean Monthly Discharge (cfs)")
 ```
 
+*Monthly Discharge Trends by Site (Before vs. After Hurricane Helene)*
+```{r}
+# Combine all monthly discharge datasets into one
+monthly_combined_all_sites <- bind_rows(
+  FBR_Hotsprings.Monthlydischarge.combined,
+  FBR_Marshall.Monthlydischarge.combined,
+  FBR_Asheville.Monthlydischarge.combined,
+  BeetreeCreek_Swannanoa.Monthlydischarge.combined,
+  NFSwannanoa_Walkertown.Monthlydischarge.combined,
+  Swannanoa_Biltmore.Monthlydischarge.combined,
+  FBR_Fletcher.Monthlydischarge.combined,
+  FBR_Blantyre.Monthlydischarge.combined,
+  FBR_Rosman.Monthlydischarge.combined
+)
+
+# Define month order for plotting (September–March)
+month_order <- c(9:12, 1:3)
+month_order_labels <- month.abb[month_order]
+
+# Create a multi-facet plot to visualize all gauge sites
+ggplot(monthly_combined_all_sites, 
+       aes(x = factor(month, levels = month_order, labels = month_order_labels), 
+           y = mean_monthly_discharge_cfs,
+           group = time_period,
+           color = time_period)) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  facet_wrap(~ name, scales = "free_y") +
+  labs(
+    title = "Monthly Mean Discharge Before and After Hurricane Helene",
+    subtitle = "All USGS Gauge Sites in the French Broad River Basin",
+    x = "Month (Sept–March)",
+    y = "Mean Monthly Discharge (cfs)",
+    color = "Period"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(strip.text = element_text(face = "bold"))
+```
+*Summary Table of Before and After Mean Monthly Discharge by Site*
+```{r}
+# Combine all monthly datasets
+monthly_combined <- bind_rows(
+  FBR_Hotsprings.Monthlydischarge.combined,
+  FBR_Marshall.Monthlydischarge.combined,
+  FBR_Asheville.Monthlydischarge.combined,
+  BeetreeCreek_Swannanoa.Monthlydischarge.combined,
+  NFSwannanoa_Walkertown.Monthlydischarge.combined,
+  Swannanoa_Biltmore.Monthlydischarge.combined,
+  FBR_Fletcher.Monthlydischarge.combined,
+  FBR_Blantyre.Monthlydischarge.combined,
+  FBR_Rosman.Monthlydischarge.combined
+)
+
+# Summary table: mean by site and period
+discharge_summary <- monthly_combined %>%
+  group_by(name, ID_number, time_period) %>%
+  summarise(mean_discharge = mean(mean_monthly_discharge_cfs, na.rm = TRUE), .groups = "drop") %>%
+  pivot_wider(names_from = time_period, 
+              values_from = mean_discharge) %>%
+  mutate(
+    difference_cfs = `2024-2025` - `2023-2024`,
+    percent_change = (`2024-2025` - `2023-2024`) / `2023-2024` * 100
+  )
+
+# View result
+print(discharge_summary)
+```
+The table compares mean monthly discharge before and after Hurricane Helene at nine USGS gauge sites in the French Broad River Basin.
+
+Discharge increased at all sites after the hurricane.
+The percent change ranged from +163% at Rosman (USGS 03439000) to +926% at Swannanoa Biltmore (USGS 03451000),
+with the largest increases observed at sites with lower pre-hurricane discharge.
+
+These results suggest that Hurricane Helene affected local hydrology, likely increasing runoff and streamflow in the following months. They also highlight how extreme weather events can alter river conditions, especially in areas with varied terrain and land use.
