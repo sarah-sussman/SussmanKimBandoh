@@ -118,12 +118,6 @@ FBR_Rosman.discharge.after <-readNWISuv(siteNumbers = "03439000",
                                        tz = "America/New_York")
 ```
 
-*pH*
-
-
-
-*Turbidity*
-
 
 **Cleanup**
 *Discharge*
@@ -211,119 +205,172 @@ FBR_HotSprings.Dailydischarge.before <- FBR_HotSprings.discharge.before %>%
   mutate(date = as_date(dateTime)) %>% #Extracting date
   group_by(date) %>%
   summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
-  ungroup()
+  ungroup() %>%
+  mutate(time_period = "2023-2024",
+         name = "FBR Hot Springs",
+         ID_number = "03454500") # creating new columns
 
 FBR_HotSprings.Dailydischarge.after <- FBR_HotSprings.discharge.after %>%
   mutate(date = as_date(dateTime)) %>% #Extracting date
   group_by(date) %>%
   summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
-  ungroup()
+  ungroup() %>%
+  mutate(time_period = "2024-2025",
+         name = "FBR Hot Springs",
+         ID_number = "03454500") # creating new columns
 
 FBR_Marshall.Dailydischarge.before <- FBR_Marshall.discharge.before %>%
   mutate(date = as_date(dateTime)) %>% #Extracting date
   group_by(date) %>%
   summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
-  ungroup()
+  ungroup() %>%
+  mutate(time_period = "2023-2024",
+         name = "FBR Marshall",
+         ID_number = "03453500") # creating new columns
 
 FBR_Marshall.Dailydischarge.after <- FBR_Marshall.discharge.after %>%
   mutate(date = as_date(dateTime)) %>% #Extracting date
   group_by(date) %>%
   summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
-  ungroup()
+  ungroup() %>%
+  mutate(time_period = "2024-2025",
+         name = "FBR Marshall",
+         ID_number = "03453500") # creating new columns)
 
 FBR_Asheville.Dailydischarge.before <- FBR_Asheville.discharge.before %>%
   mutate(date = as_date(dateTime)) %>% #Extracting date
   group_by(date) %>%
   summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
-  ungroup()
+  ungroup() %>%
+  mutate(time_period = "2023-2024",
+         name = "FBR_Asheville",
+         ID_number = "03451500") # creating new columns
   
 FBR_Asheville.Dailydischarge.after <- FBR_Asheville.discharge.after %>%
   mutate(date = as_date(dateTime)) %>% #Extracting date
   group_by(date) %>%
   summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
-  ungroup()
+  ungroup() %>%
+  mutate(time_period = "2024-2025",
+         name = "FBR_Asheville",
+         ID_number = "03451500") # creating new columns)
 
 BeetreeCreek_Swannanoa.Dailydischarge.before <- BeetreeCreek_Swannanoa.discharge.before %>%
   mutate(date = as_date(dateTime)) %>% #Extracting date
   group_by(date) %>%
   summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
-  ungroup()
+  ungroup() %>%
+  mutate(time_period = "2023-2024",
+         name = "Bee_Tree_Creek_Swannanoa",
+         ID_number = "03450000") # creating time period column
 
  BeetreeCreek_Swannanoa.Dailydischarge.after<- BeetreeCreek_Swannanoa.discharge.after %>%
   mutate(date = as_date(dateTime)) %>% #Extracting date
   group_by(date) %>%
   summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
-  ungroup()
+  ungroup() %>%
+  mutate(time_period = "2024-2025",
+         name = "Bee_Tree_Creek_Swannanoa",
+         ID_number = "03450000") # creating time period column 
  
 NFSwannanoa_Walkertown.Dailydischarge.before  <- NFSwannanoa_Walkertown.discharge.before %>%
   mutate(date = as_date(dateTime)) %>% #Extracting date
   group_by(date) %>%
   summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
-  ungroup()
+  ungroup() %>%
+  mutate(time_period = "2023-2024",
+         name = "NF_Swannanoa_Walkertown",
+         ID_number = "0344894205 ") # creating new columns
 
 NFSwannanoa_Walkertown.Dailydischarge.after <- NFSwannanoa_Walkertown.discharge.after %>%
   mutate(date = as_date(dateTime)) %>% #Extracting date
   group_by(date) %>%
   summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
-  ungroup()
+  ungroup() %>%
+  mutate(time_period = "2024-2025",
+         name = "NF_Swannanoa_Walkertown",
+         ID_number = "0344894205 ") # creating new columns
 
 Swannanoa_Biltmore.Dailydischarge.before <- Swannanoa_Biltmore.discharge.before %>%
   mutate(date = as_date(dateTime)) %>% #Extracting date
   group_by(date) %>%
   summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
-  ungroup()
+  ungroup() %>%
+  mutate(time_period = "2023-2024",
+         name = "Swannanoa_Biltmore",
+         ID_number = "03451000") # creating new columns
 
 Swannanoa_Biltmore.Dailydischarge.after <- Swannanoa_Biltmore.discharge.after %>%
   mutate(date = as_date(dateTime)) %>% #Extracting date
   group_by(date) %>%
   summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
-  ungroup()
+  ungroup() %>%
+  mutate(time_period = "2024-2025",
+         name = "Swannanoa_Biltmore",
+         ID_number = "03451000") # creating new columns
 
 FBR_Fletcher.Dailydischarge.before <- FBR_Fletcher.discharge.before %>%
   mutate(date = as_date(dateTime)) %>% #Extracting date
   group_by(date) %>%
   summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
-  ungroup()
+  ungroup() %>%
+  mutate(time_period = "2023-2024",
+         name = "FBR_Fletcher",
+         ID_number = "03447687") # creating new columns
 
 FBR_Fletcher.Dailydischarge.after <- FBR_Fletcher.discharge.after %>%
   mutate(date = as_date(dateTime)) %>% #Extracting date
   group_by(date) %>%
   summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
-  ungroup()
-
+  ungroup() %>%
+  mutate(time_period = "2024-2025",
+         name = "FBR_Fletcher",
+         ID_number = "03447687") # creating new columns
+         
 FBR_Blantyre.Dailydischarge.before <- FBR_Blantyre.discharge.before %>%
   mutate(date = as_date(dateTime)) %>% #Extracting date
   group_by(date) %>%
   summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
-  ungroup()
+  ungroup() %>%
+  mutate(time_period = "2023-2024",
+         name = "FBR_Blantyre",
+         ID_number = "03443000") # creating new columns
 
 FBR_Blantyre.Dailydischarge.after <- FBR_Blantyre.discharge.after %>%
   mutate(date = as_date(dateTime)) %>% #Extracting date
   group_by(date) %>%
   summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
-  ungroup()
+  ungroup() %>%
+  mutate(time_period = "2024-2025",
+         name = "FBR_Blantyre",
+         ID_number = "03443000") # creating new columns
 
 FBR_Rosman.Dailydischarge.before <- FBR_Rosman.discharge.before %>%
   mutate(date = as_date(dateTime)) %>% #Extracting date
   group_by(date) %>%
   summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
-  ungroup()
+  ungroup() %>%
+  mutate(time_period = "2023-2024",
+         name = "FBR_Rosman",
+         ID_number = "03439000") # creating new columns
 
 FBR_Rosman.Dailydischarge.after <- FBR_Rosman.discharge.after %>%
   mutate(date = as_date(dateTime)) %>% #Extracting date
   group_by(date) %>%
   summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
-  ungroup()
+  ungroup() %>%
+  mutate(time_period = "2024-2025",
+         name = "FBR_Rosman",
+         ID_number = "03439000") # creating new columns
 ```
 
 Create monthly discharge datasets for before and after time periods
 ```{r}
 # Create monthly discharge using mean
-
 FBR_HotSprings.Monthlydischarge.before <- FBR_HotSprings.Dailydischarge.before %>%
   mutate(year = year(date),
          month = month(date)) %>%
-  group_by(year,month) %>%
+  group_by(year,month,time_period,name,ID_number) %>%
   summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
   ungroup()
 
@@ -331,7 +378,7 @@ FBR_HotSprings.Monthlydischarge.before <- FBR_HotSprings.Dailydischarge.before %
 FBR_HotSprings.Monthlydischarge.after <- FBR_HotSprings.Dailydischarge.after %>%
   mutate(year = year(date),
          month = month(date)) %>%
-  group_by(year,month) %>%
+  group_by(year,month,time_period,name,ID_number) %>%
   summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
   ungroup()
 
@@ -339,114 +386,115 @@ FBR_HotSprings.Monthlydischarge.after <- FBR_HotSprings.Dailydischarge.after %>%
 FBR_Marshall.Monthlydischarge.before <- FBR_Marshall.Dailydischarge.before %>%
   mutate(year = year(date),
          month = month(date)) %>%
-  group_by(year,month) %>%
+  group_by(year,month,time_period,name,ID_number) %>%
   summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
   ungroup()
 
 FBR_Marshall.Monthlydischarge.after <- FBR_Marshall.Dailydischarge.after %>%
   mutate(year = year(date),
          month = month(date)) %>%
-  group_by(year,month) %>%
+  group_by(year,month,time_period,name,ID_number) %>%
   summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
   ungroup()
 
 FBR_Asheville.Monthlydischarge.before <- FBR_Asheville.Dailydischarge.before %>%
   mutate(year = year(date),
          month = month(date)) %>%
-  group_by(year,month) %>%
+  group_by(year,month,time_period,name,ID_number) %>%
   summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
   ungroup()
 
 FBR_Asheville.Monthlydischarge.after <- FBR_Asheville.Dailydischarge.after %>%
   mutate(year = year(date),
          month = month(date)) %>%
-  group_by(year,month) %>%
+  group_by(year,month,time_period,name,ID_number) %>%
   summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
   ungroup()
 
 BeetreeCreek_Swannanoa.Monthlydischarge.before <- BeetreeCreek_Swannanoa.Dailydischarge.before %>%
   mutate(year = year(date),
          month = month(date)) %>%
-  group_by(year,month) %>%
+  group_by(year,month,time_period,name,ID_number) %>%
   summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
   ungroup()
 
 BeetreeCreek_Swannanoa.Monthlydischarge.after <- BeetreeCreek_Swannanoa.Dailydischarge.after %>%
   mutate(year = year(date),
          month = month(date)) %>%
-  group_by(year,month) %>%
+  group_by(year,month,time_period,name,ID_number) %>%
   summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
   ungroup()
 
 NFSwannanoa_Walkertown.Monthlydischarge.before <- NFSwannanoa_Walkertown.Dailydischarge.before %>%
   mutate(year = year(date),
          month = month(date)) %>%
-  group_by(year,month) %>%
+  group_by(year,month,time_period,name,ID_number) %>%
   summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
   ungroup()
 
 NFSwannanoa_Walkertown.Monthlydischarge.after <- NFSwannanoa_Walkertown.Dailydischarge.after %>%
   mutate(year = year(date),
          month = month(date)) %>%
-  group_by(year,month) %>%
+  group_by(year,month,time_period,name,ID_number) %>%
   summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
   ungroup()
 
 Swannanoa_Biltmore.Monthlydischarge.before <- Swannanoa_Biltmore.Dailydischarge.before %>%
   mutate(year = year(date),
          month = month(date)) %>%
-  group_by(year,month) %>%
+  group_by(year,month,time_period,name,ID_number) %>%
   summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
   ungroup()
 
 Swannanoa_Biltmore.Monthlydischarge.after <- Swannanoa_Biltmore.Dailydischarge.after %>%
   mutate(year = year(date),
          month = month(date)) %>%
-  group_by(year,month) %>%
+  group_by(year,month,time_period,name,ID_number) %>%
   summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
   ungroup()
   
 FBR_Fletcher.Monthlydischarge.before <- FBR_Fletcher.Dailydischarge.before %>%
   mutate(year = year(date),
          month = month(date)) %>%
-  group_by(year,month) %>%
+  group_by(year,month,time_period,name,ID_number) %>%
   summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
   ungroup()
 
 FBR_Fletcher.Monthlydischarge.after <- FBR_Fletcher.Dailydischarge.after %>%
   mutate(year = year(date),
          month = month(date)) %>%
-  group_by(year,month) %>%
+  group_by(year,month,time_period,name,ID_number) %>%
   summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
   ungroup()
 
 FBR_Blantyre.Monthlydischarge.before <- FBR_Blantyre.Dailydischarge.before %>%
   mutate(year = year(date),
          month = month(date)) %>%
-  group_by(year,month) %>%
+  group_by(year,month,time_period,name,ID_number) %>%
   summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
   ungroup()
 
 FBR_Blantyre.Monthlydischarge.after <- FBR_Blantyre.Dailydischarge.after %>%
   mutate(year = year(date),
          month = month(date)) %>%
-  group_by(year,month) %>%
+  group_by(year,month,time_period,name,ID_number) %>%
   summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
   ungroup()
 
 FBR_Rosman.Monthlydischarge.before <- FBR_Rosman.Dailydischarge.before %>%
   mutate(year = year(date),
          month = month(date)) %>%
-  group_by(year,month) %>%
+  group_by(year,month,time_period,name,ID_number) %>%
   summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
   ungroup()
 
 FBR_Rosman.Monthlydischarge.after <- FBR_Rosman.Dailydischarge.after %>%
   mutate(year = year(date),
          month = month(date)) %>%
-  group_by(year,month) %>%
+  group_by(year,month,time_period,name,ID_number) %>%
   summarise(mean_monthly_discharge_cfs = mean(mean_daily_discharge_cfs, na.rm = TRUE)) %>%
   ungroup()
+
 ```
 
 
