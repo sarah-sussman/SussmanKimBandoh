@@ -24,7 +24,7 @@ library(sf)
 ```
 
 
-# Rationale and Research Questions
+#Rationale and Research Questions
 Hurricane Helene made landfall in Western North Carolina on September 27th, 2024. It primarily affected the City of Asheville and small towns like Marshall, situated north of Asheville and Swannanoa, situated east of Asheville. The French Broad River runs south-north through the City of Asheville, and the Swannanoa River runs west through Asheville, before joining the French Broad within the city limits. After Helene, it was clear that the two rivers' morphology had changed. Our project examines discharge (cfs) at 10 USGS stream gauges located in the French Broad and Swannanoa rivers. We look at time periods before (Sept. 2023 - March 2024) and after (Sept. 2024 - March 2025) the hurricane to make comparisons about discharge.
 
 This project has 2 research questions:
@@ -59,6 +59,23 @@ The 9 USGS stream gages we used are:
 \newpage
 
 # Analysis
+*Map of gage locations*
+```{r echo=FALSE}
+gage_locations_sf <- st_as_sf(gage_locations,
+                              coords = c("longitude", "latitude"), 
+                              crs = 4269)
+mapview(gage_locations_sf, 
+        zcol = "ID_number", 
+        label = gage_locations_sf$ID_number,
+        cex = 4,
+        layer.name = "USGS Gage IDs")
+```
+This map shows where the 9 USGS gages are located along the French Broad and Swannanoa Rivers.
+
+*Exploratory graphs*
+```{r}
+
+```
 
 
 
