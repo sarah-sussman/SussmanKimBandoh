@@ -497,11 +497,47 @@ FBR_Rosman.Monthlydischarge.after <- FBR_Rosman.Dailydischarge.after %>%
 
 ```
 
+Create before and after combined datasets | Daily Discharge
+```{r}
+FBR_Hotsprings.Dailydischarge.combined <- 
+  bind_rows(FBR_HotSprings.Dailydischarge.before, 
+            FBR_HotSprings.Dailydischarge.after)
 
-*pH*
-Can use same workflow as discharge
+FBR_Marshall.Dailydischarge.combined <- 
+  bind_rows(FBR_Marshall.Dailydischarge.before,
+            FBR_Marshall.Dailydischarge.after)
 
+FBR_Asheville.Dailydischarge.combined <- 
+  bind_rows(FBR_Asheville.Dailydischarge.before,
+            FBR_Asheville.Dailydischarge.after)
 
+BeetreeCreek_Swannanoa.Dailydischarge.combined <- 
+  bind_rows(BeetreeCreek_Swannanoa.Dailydischarge.before,
+            BeetreeCreek_Swannanoa.Dailydischarge.after)
 
-*Turbidity*
-Can use same workflow as discharge
+NFSwannanoa_Walkertown.Dailydischarge.combined <-
+  bind_rows(NFSwannanoa_Walkertown.Dailydischarge.before, 
+            NFSwannanoa_Walkertown.Dailydischarge.after)
+
+Swannanoa_Biltmore.Dailydischarge.combined <-
+  bind_rows(Swannanoa_Biltmore.Dailydischarge.before,
+            Swannanoa_Biltmore.Dailydischarge.after)
+
+FBR_Fletcher.Dailydischarge.combined <- 
+  bind_rows(FBR_Fletcher.Dailydischarge.before,
+            FBR_Fletcher.Dailydischarge.after)
+
+FBR_Blantyre.Dailydischarge.combined <- 
+  bind_rows(FBR_Blantyre.Dailydischarge.before,
+            FBR_Blantyre.Dailydischarge.after)
+
+FBR_Rosman.Dailydischarge.combined <-
+  bind_rows(FBR_Rosman.Dailydischarge.before,
+            FBR_Rosman.Dailydischarge.after)
+```
+
+Create before and after combined datasets | Monthly Discharge
+```{r}
+
+```
+

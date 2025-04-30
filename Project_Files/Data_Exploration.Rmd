@@ -1,0 +1,211 @@
+**Setup**
+```{r setup}
+# Set working directory
+library(here)
+here()
+
+# Load packages
+library(tidyverse)
+library("dataRetrieval")
+library(dplyr)
+library(lubridate)
+```
+
+**Explore using plots**
+*Mean Daily Discharge (cfs)*
+```{r}
+ggplot(FBR_Hotsprings.Dailydischarge.combined, aes(x = date, y = mean_daily_discharge_cfs)) +
+  geom_line() +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Daily Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #03454500, French Broad River at Hot Springs, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Daily Discharge (cfs)") 
+
+ggplot(FBR_Marshall.Dailydischarge.combined, aes(x = date, y = mean_daily_discharge_cfs)) +
+  geom_line() +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Daily Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #03453500, French Broad River at Marshall, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Daily Discharge (cfs)")
+
+ggplot(FBR_Asheville.Dailydischarge.combined, aes(x = date, y = mean_daily_discharge_cfs)) +
+  geom_line() +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Daily Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #03451500, French Broad River at Asheville, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Daily Discharge (cfs)")
+
+ggplot(BeetreeCreek_Swannanoa.Dailydischarge.combined, aes(x = date, y = mean_daily_discharge_cfs)) +
+  geom_line() +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Daily Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #03450000, Bee Tree Creek near Swannanoa, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Daily Discharge (cfs)")
+
+ggplot(NFSwannanoa_Walkertown.Dailydischarge.combined, aes(x = date, y = mean_daily_discharge_cfs)) +
+  geom_line() +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Daily Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #0344894205, North Fork Swannanoa River near Walkertown, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Daily Discharge (cfs)")
+
+ggplot(Swannanoa_Biltmore.Dailydischarge.combined, aes(x = date, y = mean_daily_discharge_cfs)) +
+  geom_line() +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Daily Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #03451000, Swannanoa River at Biltmore, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Daily Discharge (cfs)")
+
+ggplot(FBR_Fletcher.Dailydischarge.combined, aes(x = date, y = mean_daily_discharge_cfs)) +
+  geom_line() +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Daily Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #03447687, French Broad River near Fletcher, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Daily Discharge (cfs)")
+
+ggplot(FBR_Blantyre.Dailydischarge.combined, aes(x = date, y = mean_daily_discharge_cfs)) +
+  geom_line() +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Daily Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #03443000, French Broad River at Blantyre, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Daily Discharge (cfs)")
+
+ggplot(FBR_Rosman.Dailydischarge.combined, aes(x = date, y = mean_daily_discharge_cfs)) +
+  geom_line() +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Daily Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #03439000, French Broad River at Rosman, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Daily Discharge (cfs)")
+```
+
+*Mean Monthly Discharge*
+```{r}
+month_order <- c(9:12, 1:3)
+month_order_labels <- month.abb[month_order]
+
+ggplot(FBR_Hotsprings.Monthlydischarge.combined, 
+       aes(x = factor(month, levels = month_order, 
+                      labels = month_order_labels), y = mean_monthly_discharge_cfs)) +
+  geom_line(group = 1) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Monthly Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #03454500, French Broad River at Hot Springs, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Monthly Discharge (cfs)")
+
+ggplot(FBR_Marshall.Monthlydischarge.combined, 
+       aes(x = factor(month, levels = month_order,
+                      labels = month_order_labels), 
+           y = mean_monthly_discharge_cfs)) +
+  geom_line(group = 1) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Monthly Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #03453500, French Broad River at Marshall, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Monthly Discharge (cfs)")
+
+ggplot(FBR_Asheville.Monthlydischarge.combined, 
+       aes(x = factor(month, levels = month_order,
+                      labels = month_order_labels), 
+           y = mean_monthly_discharge_cfs)) +
+  geom_line(group = 1) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Monthly Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #03451500, French Broad River at Asheville, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Monthly Discharge (cfs)")
+
+ggplot(BeetreeCreek_Swannanoa.Monthlydischarge.combined, 
+       aes(x = factor(month, levels = month_order,
+                      labels = month_order_labels), 
+           y = mean_monthly_discharge_cfs)) +
+  geom_line(group = 1) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Monthly Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #03450000, Bee Tree Creek near Swannanoa, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Monthly Discharge (cfs)")
+
+ggplot(NFSwannanoa_Walkertown.Monthlydischarge.combined, 
+       aes(x = factor(month, levels = month_order,
+                      labels = month_order_labels),
+           y = mean_monthly_discharge_cfs)) +
+  geom_line(group = 1) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Monthly Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #0344894205, North Fork Swannanoa River near Walkertown, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Monthly Discharge (cfs)")
+
+ggplot(Swannanoa_Biltmore.Monthlydischarge.combined, 
+       aes(x = factor(month, levels = month_order,
+                      labels = month_order_labels),
+           y = mean_monthly_discharge_cfs)) +
+  geom_line(group = 1) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Monthly Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #03451000, Swannanoa River at Biltmore, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Monthly Discharge (cfs)")
+
+ggplot(FBR_Fletcher.Monthlydischarge.combined, 
+       aes(x = factor(month, levels = month_order,
+                      labels = month_order_labels), 
+           y = mean_monthly_discharge_cfs)) +
+  geom_line(group = 1) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Monthly Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #03447687, French Broad River near Fletcher, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Monthly Discharge (cfs)")
+
+ggplot(FBR_Blantyre.Monthlydischarge.combined, 
+       aes(x = factor(month, levels = month_order,
+                      labels = month_order_labels), 
+           y = mean_monthly_discharge_cfs)) +
+  geom_line(group = 1) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Monthly Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #03443000, French Broad River at Blantyre, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Monthly Discharge (cfs)")
+
+ggplot(FBR_Rosman.Monthlydischarge.combined, 
+       aes(x = factor(month, levels = month_order,
+                      labels = month_order_labels), 
+           y = mean_monthly_discharge_cfs)) +
+  geom_line(group = 1) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Monthly Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #03439000, French Broad River at Rosman, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Monthly Discharge (cfs)")
+```
+
