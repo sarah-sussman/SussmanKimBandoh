@@ -39,7 +39,6 @@ FBR_Rosman.Dailydischarge.combined <- read.csv(here("Data", "Processed", "FBR_As
 FBR_Rosman.Monthlydischarge.combined <- read.csv(here("Data", "Processed", "FBR_Rosman.Monthlydischarge.combined.csv"))
 NFSwannanoa_Walkertown.Dailydischarge.combined <- read.csv(here("Data", "Processed", "NFSwannanoa_Walkertown.Dailydischarge.combined.csv"))
 NFSwannanoa_Walkertown.Monthlydischarge.combined <- read.csv(here("Data", "Processed", "NFSwannanoa_Walkertown.Monthlydischarge.combined.csv"))
-
 ```
 
 
