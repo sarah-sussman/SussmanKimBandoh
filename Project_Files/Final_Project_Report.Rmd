@@ -1,3 +1,11 @@
+---
+title: "Hurricane Helene's effect on river discharge in Western North Carolina"
+authors: "Akosua Bandoh, Yeeun Kim, and Sarah Sussman"
+date: "2025-04-30"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 \newpage
 \tableofcontents 
 \newpage
@@ -6,7 +14,7 @@
 \listoffigures 
 \newpage
 
-```{r setup, include=FALSE}
+```{r setup, echo=FALSE,include=FALSE}
 # Set your working directory
 library(here)
 here()
@@ -24,7 +32,8 @@ library(sf)
 ```
 
 
-#Rationale and Research Questions
+# Rationale and Research Questions
+
 Hurricane Helene made landfall in Western North Carolina on September 27th, 2024. It primarily affected the City of Asheville and small towns like Marshall, situated north of Asheville and Swannanoa, situated east of Asheville. The French Broad River runs south-north through the City of Asheville, and the Swannanoa River runs west through Asheville, before joining the French Broad within the city limits. After Helene, it was clear that the two rivers' morphology had changed. Our project examines discharge (cfs) at 10 USGS stream gauges located in the French Broad and Swannanoa rivers. We look at time periods before (Sept. 2023 - March 2024) and after (Sept. 2024 - March 2025) the hurricane to make comparisons about discharge.
 
 This project has 2 research questions:
@@ -35,7 +44,7 @@ This project has 2 research questions:
 
 # Dataset Information
 
-Our data is from 9 USGS stream gauges in Western NC. We used the USGS R package "dataRetrieval" to pull the stream gauge data. Specifically, we used discharge (parameter code: #00060). We were going to also look at pH (parameter code: #00400) and and turbidity (parameter code: #00076), but quuickly found that pH and turbidity are not measured at our 9 gage locations. We pulled data from September 27, 2023 - March 27, 2023 and September 27 2024 - March 27, 2025.
+Our data is from 9 USGS stream gauges in Western NC. We used the USGS R package "dataRetrieval" to pull the stream gauge data. Specifically, we used discharge (parameter code: #00060). We were going to also look at pH (parameter code: #00400) and and turbidity (parameter code: #00076), but quickly found that pH and turbidity are not measured at our 9 gage locations. We pulled data from September 27, 2023 - March 27, 2023 and September 27 2024 - March 27, 2025.
 
 Link to data: https://waterdata.usgs.gov/state/north-carolina/ 
 
@@ -54,13 +63,11 @@ The 9 USGS stream gages we used are:
 
 # Exploratory Analysis 
 
-
-
-\newpage
-
-# Analysis
 *Map of gage locations*
 ```{r echo=FALSE}
+gage_locations <- read.csv(here("Data", "Raw", "gage_locations.csv"))
+gage_locations$ID_number <- as.character(gage_locations$ID_number)
+
 gage_locations_sf <- st_as_sf(gage_locations,
                               coords = c("longitude", "latitude"), 
                               crs = 4269)
@@ -72,10 +79,147 @@ mapview(gage_locations_sf,
 ```
 This map shows where the 9 USGS gages are located along the French Broad and Swannanoa Rivers.
 
-*Exploratory graphs*
-```{r}
+To begin exploring the data, the mean daily discharge and the mean monthly discharge were found were the before Hurricane Helene time period and the after Hurricane Helene time period. The mean daily and monthly discharge were plotted for each USGS gage and faceted by time period. Here are four of the nine mean daily and monthly discharge plots (because 9 would be a lot). These 4 are spread out across the extent of our study area.
+
+Figure 1 shows the mean daily discharge for the USGS gage located in the French Broad River in Hot Springs, NC. This the the northernmost USGS gage that we studied. Figure 2 shows the mean monthly discharge of this same gage.
+```{r, echo=FALSE, fig.cap= "Figure 1: Comparing mean daily discharge between 2023-2024 and 2024-2025 at USGS Gage #03451500"}
+FBR_Hotsprings.Dailydischarge.combined <-
+  read.csv(here("Data", "Processed", "FBR_Hotsprings.Dailydischarge.combined.csv"))
+
+ggplot(FBR_Hotsprings.Dailydischarge.combined, aes(x = date, y = mean_daily_discharge_cfs)) +
+  geom_line(group = 1) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Daily Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #03454500, French Broad River at Hot Springs, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Daily Discharge (cfs)") +
+  theme_bw()
+```
+```{r, echo=FALSE, Fig.cap= "Figure 2: Comparing mean monthly discharge between 2023-2024 and 2024-2025 at USGS Gage #03451500"}
+FBR_Hotsprings.Monthlydischarge.combined <-
+  read.csv(here("Data", "Processed", "FBR_Hotsprings.Monthlydischarge.combined.csv"))
+
+month_order <- c(9:12, 1:3)
+month_order_labels <- month.abb[month_order]
+
+ggplot(FBR_Hotsprings.Monthlydischarge.combined, 
+       aes(x = factor(month, levels = month_order, 
+                      labels = month_order_labels), y = mean_monthly_discharge_cfs)) +
+  geom_line(group = 1) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Monthly Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #03454500, French Broad River at Hot Springs, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Monthly Discharge (cfs)") +
+  theme_bw()
 
 ```
+
+Figure 3 shows the mean daily discharge for the USGS gage located in the French Broad River in Asheville, NC. This the the central-most USGS gage that we studied. Figure 4 shows the mean monthly discharge of this same gage.
+```{r, echo=FALSE, fig.cap="Figure 4:Comparing mean daily discharge between 2023-2024 and 2024-2025 at USGS Gage #03451500"}
+FBR_Asheville.Dailydischarge.combined <- read.csv(here("Data", "Processed", "FBR_Asheville.Dailydischarge.combined.csv"))
+
+ggplot(FBR_Asheville.Dailydischarge.combined, aes(x = date, y = mean_daily_discharge_cfs)) +
+  geom_line(group = 1) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Daily Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #03451500, French Broad River at Asheville, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Daily Discharge (cfs)") +
+  theme_bw()
+```
+
+```{r, echo=FALSE, fig.cap="Figure 5: Comparing mean monthly discharge between 2023-2024 and 2024-2025 at USGS Gage #03451500"}
+FBR_Asheville.Monthlydischarge.combined <- read.csv(here("Data", "Processed", "FBR_Asheville.Monthlydischarge.combined.csv"))
+
+ggplot(FBR_Asheville.Monthlydischarge.combined, 
+       aes(x = factor(month, levels = month_order,
+                      labels = month_order_labels), 
+           y = mean_monthly_discharge_cfs)) +
+  geom_line(group = 1) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Monthly Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #03451500, French Broad River at Asheville, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Monthly Discharge (cfs)") +
+  theme_bw()
+```
+
+Figure 6 shows the mean daily discharge for the USGS gage located in the French Broad River in Rosman, NC. This the the southern-most USGS gage that we studied. Figure 7 shows the mean monthly discharge of this same gage.
+
+```{r, echo=FALSE, fig.cap="Figure 6: Comparing mean daily discharge between 2023-2024 and 2024-2025 at USGS Gage #03439000"}
+FBR_Rosman.Dailydischarge.combined <- read.csv(here("Data", "Processed", "FBR_Asheville.Dailydischarge.combined.csv"))
+
+ggplot(FBR_Rosman.Dailydischarge.combined, aes(x = date, y = mean_daily_discharge_cfs)) +
+  geom_line(group = 1) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Daily Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #03439000, French Broad River at Rosman, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Daily Discharge (cfs)") +
+  theme_bw()
+```
+
+```{r, echo=FALSE, fig.cap="Figure 7: Comparing mean daily discharge between 2023-2024 and 2024-2025 at USGS Gage #03439000"}
+FBR_Rosman.Monthlydischarge.combined <- read.csv(here("Data", "Processed", "FBR_Rosman.Monthlydischarge.combined.csv"))
+
+ggplot(FBR_Rosman.Monthlydischarge.combined, 
+       aes(x = factor(month, levels = month_order,
+                      labels = month_order_labels), 
+           y = mean_monthly_discharge_cfs)) +
+  geom_line(group = 1) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Monthly Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #03439000, French Broad River at Rosman, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Monthly Discharge (cfs)") +
+  theme_bw()
+
+```
+
+Figure 8 shows the mean daily discharge for the USGS gage located in the North Fork of the Swanannoa River in Walkertown, NC. This the the eastern-most USGS gage that we studied. Figure 9 shows the mean monthly discharge of this same gage.
+
+```{r, echo=FALSE, fig.cap="Figure 8: Comparing mean daily discharge between 2023-2024 and 2024-2025 at USGS Gage #0344894205"}
+NFSwannanoa_Walkertown.Dailydischarge.combined <- read.csv(here("Data", "Processed", "NFSwannanoa_Walkertown.Dailydischarge.combined.csv"))
+
+ggplot(NFSwannanoa_Walkertown.Dailydischarge.combined, aes(x = date, y = mean_daily_discharge_cfs)) +
+  geom_line(group = 1) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Daily Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #0344894205, North Fork Swannanoa River near Walkertown, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Daily Discharge (cfs)") +
+  theme_bw()
+```
+
+```{r, echo=FALSE, fig.cap="Figure 9: Comparing mean monthly discharge between 2023-2024 and 2024-2025 at USGS Gage #0344894205"}
+NFSwannanoa_Walkertown.Monthlydischarge.combined <- read.csv(here("Data", "Processed", "NFSwannanoa_Walkertown.Monthlydischarge.combined.csv"))
+
+ggplot(NFSwannanoa_Walkertown.Monthlydischarge.combined, 
+       aes(x = factor(month, levels = month_order,
+                      labels = month_order_labels),
+           y = mean_monthly_discharge_cfs)) +
+  geom_line(group = 1) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~time_period, scales = "free_x", ncol = 2) +
+  labs(title = "Mean Monthly Discharge (cfs) before and after Hurricane Helene",
+       subtitle = "USGS Gage #0344894205, North Fork Swannanoa River near Walkertown, NC",
+       x = "Sept 27 - March 27",
+       y = "Mean Monthly Discharge (cfs)") +
+  theme_bw()
+
+```
+
+\newpage
+
+# Analysis
 
 
 
