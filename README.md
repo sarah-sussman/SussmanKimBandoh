@@ -57,6 +57,9 @@ For processed USGS discharge data
 - monthly_df: Sorted monthly discharge dataset by year and month
 - monthly_ts: Time series object of monthly discharge values
 - monthly_stl: STL decomposition result of the monthly discharge time series
-
+- tau_results: Kendall’s Tau trend statistics for each site and time period
+- gage_list: a list of daily discharge dataframes by site with date, discharge, and time period
+- combined_data: a merged dataframe of all sites’ daily discharge data with site labels included
+	
 ## Scripts and code
 N/A

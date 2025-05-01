@@ -28,13 +28,491 @@ library(sf)
 # Set your ggplot theme
 
 # Load your datasets
+# Madison County gauges
+### September 2023 - March 2024 (before)
+FBR_HotSprings.discharge.before <- readNWISuv(siteNumbers = "03454500",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+write.csv(FBR_HotSprings.discharge.before, 
+          here("Data", "Raw", "FBR_HotSprings.discharge.before.csv"), row.names = FALSE)
+
+FBR_Marshall.discharge.before <-readNWISuv(siteNumbers = "03453500",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+write.csv(FBR_Marshall.discharge.before,
+          here("Data", "Raw", "FBR_Marshall.discharge.before.csv"), row.names = FALSE)
+
+### September 2024 - March 2025 (after)
+FBR_HotSprings.discharge.after <- readNWISuv(siteNumbers = "03454500",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+write.csv(FBR_HotSprings.discharge.after, 
+          here("Data", "Raw", "FBR_HotSprings.discharge.after.csv"), row.names = FALSE)
+
+FBR_Marshall.discharge.after <-readNWISuv(siteNumbers = "03453500",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+write.csv(FBR_Marshall.discharge.after,
+          here("Data", "Raw", "FBR_Marshall.discharge.after.csv"), row.names = FALSE)
+
+## Buncombe County
+### September 2023 - March 2024 (before)
+FBR_Asheville.discharge.before <- readNWISuv(siteNumbers = "03451500",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+write.csv(FBR_Asheville.discharge.before,
+          here("Data", "Raw", "FBR_Asheville.discharge.before.csv"), row.names = FALSE)
+
+BeetreeCreek_Swannanoa.discharge.before <- readNWISuv(siteNumbers = "03450000",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+write.csv(BeetreeCreek_Swannanoa.discharge.before,
+          here("Data", "Raw", "BeetreeCreek_Swannanoa.discharge.before.csv"), row.names = FALSE)
+
+NFSwannanoa_Walkertown.discharge.before <- readNWISuv(siteNumbers = "0344894205",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+write.csv(NFSwannanoa_Walkertown.discharge.before,
+          here("Data", "Raw", "NFSwannanoa_Walkertown.discharge.before.csv"), row.names = FALSE)
+
+Swannanoa_Biltmore.discharge.before <- readNWISuv(siteNumbers = "03451000",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+write.csv(Swannanoa_Biltmore.discharge.before,
+          here("Data", "Raw", "Swannanoa_Biltmore.discharge.before.csv"), row.names = FALSE)
+
+### September 2024 - March 2025 (after)
+FBR_Asheville.discharge.after <- readNWISuv(siteNumbers = "03451500",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+write.csv(FBR_Asheville.discharge.after,
+          here("Data", "Raw", "FBR_Asheville.discharge.after.csv"), row.names = FALSE)
+
+BeetreeCreek_Swannanoa.discharge.after <- readNWISuv(siteNumbers = "03450000",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+write.csv(BeetreeCreek_Swannanoa.discharge.after,
+          here("Data", "Raw", "BeetreeCreek_Swannanoa.discharge.after.csv"), row.names = FALSE)
+
+NFSwannanoa_Walkertown.discharge.after <- readNWISuv(siteNumbers = "0344894205",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+write.csv(NFSwannanoa_Walkertown.discharge.after,
+          here("Data", "Raw", "NFSwannanoa_Walkertown.discharge.after.csv"), row.names = FALSE)
+
+Swannanoa_Biltmore.discharge.after <- readNWISuv(siteNumbers = "03451000",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+write.csv(Swannanoa_Biltmore.discharge.after,
+          here("Data", "Raw", "Swannanoa_Biltmore.discharge.after.csv"), row.names = FALSE)
+
+
+## Henderson County
+### September 2023 - March 2024 (before)
+FBR_Fletcher.discharge.before <- readNWISuv(siteNumbers = "03447687",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+write.csv(FBR_Fletcher.discharge.before,
+          here("Data", "Raw", "FBR_Fletcher.discharge.before.csv"), row.names = FALSE)
+
+FBR_Blantyre.discharge.before <- readNWISuv(siteNumbers = "03443000",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+write.csv(FBR_Blantyre.discharge.before,
+          here("Data", "Raw", "FBR_Blantyre.discharge.before.csv"), row.names = FALSE)
+
+FBR_Rosman.discharge.before <-readNWISuv(siteNumbers = "03439000",
+                                       parameterCd = "00060",
+                                       startDate = "2023-09-27", 
+                                       endDate = "2024-03-27", 
+                                       tz = "America/New_York")
+write.csv(FBR_Rosman.discharge.before,
+          here("Data", "Raw", "FBR_Rosman.discharge.before.csv"), row.names = FALSE)
+
+### September 2024 - March 2025 (after)
+FBR_Fletcher.discharge.after <- readNWISuv(siteNumbers = "03447687",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+write.csv(FBR_Fletcher.discharge.after,
+          here("Data", "Raw", "FBR_Fletcher.discharge.after.csv"), row.names = FALSE)
+
+FBR_Blantyre.discharge.after <- readNWISuv(siteNumbers = "03443000",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+write.csv(FBR_Blantyre.discharge.after,
+          here("Data", "Raw", "FBR_Blantyre.discharge.after.csv"), row.names = FALSE)
+
+FBR_Rosman.discharge.after <-readNWISuv(siteNumbers = "03439000",
+                                       parameterCd = "00060",
+                                       startDate = "2024-09-27", 
+                                       endDate = "2025-03-27", 
+                                       tz = "America/New_York")
+write.csv(FBR_Rosman.discharge.after,
+          here("Data", "Raw", "FBR_Rosman.discharge.after.csv"), row.names = FALSE)
 gage_locations <- read.csv(here("Data", "Raw", "gage_locations.csv"))
+
+#Rename column names and delete data qualifier column
+## X_00060_00000 to discharge_cfs
+FBR_HotSprings.discharge.before <- FBR_HotSprings.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+write.csv(FBR_HotSprings.discharge.before, 
+          here("Data", "Processed", "FBR_HotSprings.discharge.before.csv"), row.names = FALSE)
+
+FBR_HotSprings.discharge.after <- FBR_HotSprings.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+write.csv(FBR_HotSprings.discharge.after, 
+          here("Data", "Processed", "FBR_HotSprings.discharge.after.csv"), row.names = FALSE)
+
+FBR_Marshall.discharge.before <- FBR_Marshall.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+write.csv(FBR_Marshall.discharge.before, 
+          here("Data", "Processed", "FBR_Marshall.discharge.before.csv"), row.names = FALSE)
+  
+FBR_Marshall.discharge.after <- FBR_Marshall.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+write.csv(FBR_Marshall.discharge.after, 
+          here("Data", "Processed", "FBR_Marshall.discharge.after.csv"), row.names = FALSE)
+
+FBR_Asheville.discharge.before <- FBR_Asheville.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+write.csv(FBR_Asheville.discharge.before, 
+          here("Data", "Processed", "FBR_Asheville.discharge.before.csv"), row.names = FALSE)
+
+FBR_Asheville.discharge.after <- FBR_Asheville.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+write.csv(FBR_Asheville.discharge.after, 
+          here("Data", "Processed", "FBR_Asheville.discharge.after.csv"), row.names = FALSE)
+
+BeetreeCreek_Swannanoa.discharge.before <- BeetreeCreek_Swannanoa.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+write.csv(BeetreeCreek_Swannanoa.discharge.before, 
+          here("Data", "Processed", "BeetreeCreek_Swannanoa.discharge.before.csv"), row.names = FALSE)
+
+BeetreeCreek_Swannanoa.discharge.after <- BeetreeCreek_Swannanoa.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+write.csv(BeetreeCreek_Swannanoa.discharge.after, 
+          here("Data", "Processed", "BeetreeCreek_Swannanoa.discharge.after.csv"), row.names = FALSE)
+
+NFSwannanoa_Walkertown.discharge.before <- NFSwannanoa_Walkertown.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+write.csv(NFSwannanoa_Walkertown.discharge.before, 
+          here("Data", "Processed", "NFSwannanoa_Walkertown.discharge.before.csv"), row.names = FALSE)
+
+NFSwannanoa_Walkertown.discharge.after <- NFSwannanoa_Walkertown.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+write.csv(NFSwannanoa_Walkertown.discharge.after, 
+          here("Data", "Processed", "NFSwannanoa_Walkertown.discharge.after.csv"), row.names = FALSE)
+
+Swannanoa_Biltmore.discharge.before <- Swannanoa_Biltmore.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+write.csv(Swannanoa_Biltmore.discharge.before, 
+          here("Data", "Processed", "Swannanoa_Biltmore.discharge.before.csv"), row.names = FALSE)
+
+Swannanoa_Biltmore.discharge.after <- Swannanoa_Biltmore.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+write.csv(Swannanoa_Biltmore.discharge.after, 
+          here("Data", "Processed", "Swannanoa_Biltmore.discharge.after.csv"), row.names = FALSE)
+
+FBR_Fletcher.discharge.before <- FBR_Fletcher.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+write.csv(FBR_Fletcher.discharge.before, 
+          here("Data", "Processed", "FBR_Fletcher.discharge.before.csv"), row.names = FALSE)
+
+FBR_Fletcher.discharge.after <- FBR_Fletcher.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+write.csv(FBR_Fletcher.discharge.after, 
+          here("Data", "Processed", "FBR_Fletcher.discharge.after.csv"), row.names = FALSE)
+
+FBR_Blantyre.discharge.before <- FBR_Blantyre.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+write.csv(FBR_Blantyre.discharge.before, 
+          here("Data", "Processed", "FBR_Blantyre.discharge.before.csv"), row.names = FALSE)
+
+FBR_Blantyre.discharge.after <- FBR_Blantyre.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+write.csv(FBR_Blantyre.discharge.after, 
+          here("Data", "Processed", "FBR_Blantyre.discharge.after.csv"), row.names = FALSE)
+
+FBR_Rosman.discharge.before <- FBR_Rosman.discharge.before %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+write.csv(FBR_Rosman.discharge.before, 
+          here("Data", "Processed", "FBR_Rosman.discharge.before.csv"), row.names = FALSE)
+
+FBR_Rosman.discharge.after <- FBR_Rosman.discharge.after %>%
+  rename(discharge_cfs = X_00060_00000) %>%
+  select(-X_00060_00000_cd)
+write.csv(FBR_Rosman.discharge.after, 
+          here("Data", "Processed", "FBR_Rosman.discharge.after.csv"), row.names = FALSE)
+```
+
+Create mean daily discharge datasets for before and after time periods
+```{r, echo=FALSE}
+# Create daily discharge dataset using mean
+FBR_HotSprings.Dailydischarge.before <- FBR_HotSprings.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate(time_period = "2023-2024",
+         name = "FBR Hot Springs",
+         ID_number = "03454500") # creating new columns
+write.csv(FBR_HotSprings.Dailydischarge.before, 
+          here("Data", "Processed", "FBR_HotSprings.Dailydischarge.before.csv"), row.names = FALSE)
+
+FBR_HotSprings.Dailydischarge.after <- FBR_HotSprings.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate(time_period = "2024-2025",
+         name = "FBR Hot Springs",
+         ID_number = "03454500") # creating new columns
+write.csv(FBR_HotSprings.Dailydischarge.after, 
+          here("Data", "Processed", "FBR_HotSprings.Dailydischarge.after.csv"), row.names = FALSE)
+
+FBR_Marshall.Dailydischarge.before <- FBR_Marshall.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate(time_period = "2023-2024",
+         name = "FBR Marshall",
+         ID_number = "03453500") # creating new columns
+write.csv(FBR_Marshall.Dailydischarge.before, 
+          here("Data", "Processed", "FBR_Marshall.Dailydischarge.before.csv"), row.names = FALSE)
+
+FBR_Marshall.Dailydischarge.after <- FBR_Marshall.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate(time_period = "2024-2025",
+         name = "FBR Marshall",
+         ID_number = "03453500") # creating new columns)
+write.csv(FBR_Marshall.Dailydischarge.after, 
+          here("Data", "Processed", "FBR_Marshall.Dailydischarge.after.csv"), row.names = FALSE)
+
+FBR_Asheville.Dailydischarge.before <- FBR_Asheville.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate(time_period = "2023-2024",
+         name = "FBR_Asheville",
+         ID_number = "03451500") # creating new columns
+write.csv(FBR_Asheville.Dailydischarge.before, 
+          here("Data", "Processed", "FBR_Asheville.Dailydischarge.before.csv"), row.names = FALSE)
+  
+FBR_Asheville.Dailydischarge.after <- FBR_Asheville.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate(time_period = "2024-2025",
+         name = "FBR_Asheville",
+         ID_number = "03451500") # creating new columns)
+write.csv(FBR_Asheville.Dailydischarge.after, 
+          here("Data", "Processed", "FBR_Asheville.Dailydischarge.after.csv"), row.names = FALSE)
+
+BeetreeCreek_Swannanoa.Dailydischarge.before <- BeetreeCreek_Swannanoa.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate(time_period = "2023-2024",
+         name = "Bee_Tree_Creek_Swannanoa",
+         ID_number = "03450000") # creating time period column
+write.csv(BeetreeCreek_Swannanoa.Dailydischarge.before, 
+          here("Data", "Processed", "BeetreeCreek_Swannanoa.Dailydischarge.before.csv"), row.names = FALSE)
+
+ BeetreeCreek_Swannanoa.Dailydischarge.after<- BeetreeCreek_Swannanoa.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate(time_period = "2024-2025",
+         name = "Bee_Tree_Creek_Swannanoa",
+         ID_number = "03450000") # creating time period column 
+ write.csv(BeetreeCreek_Swannanoa.Dailydischarge.after, 
+          here("Data", "Processed", "BeetreeCreek_Swannanoa.Dailydischarge.after.csv"), row.names = FALSE)
+ 
+NFSwannanoa_Walkertown.Dailydischarge.before  <- NFSwannanoa_Walkertown.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate(time_period = "2023-2024",
+         name = "NF_Swannanoa_Walkertown",
+         ID_number = "0344894205 ") # creating new columns
+write.csv(NFSwannanoa_Walkertown.Dailydischarge.before, 
+          here("Data", "Processed", "NFSwannanoa_Walkertown.Dailydischarge.before.csv"), row.names = FALSE)
+
+NFSwannanoa_Walkertown.Dailydischarge.after <- NFSwannanoa_Walkertown.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate(time_period = "2024-2025",
+         name = "NF_Swannanoa_Walkertown",
+         ID_number = "0344894205 ") # creating new columns
+write.csv(NFSwannanoa_Walkertown.Dailydischarge.after, 
+          here("Data", "Processed", "NFSwannanoa_Walkertown.Dailydischarge.after.csv"), row.names = FALSE)
+
+Swannanoa_Biltmore.Dailydischarge.before <- Swannanoa_Biltmore.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate(time_period = "2023-2024",
+         name = "Swannanoa_Biltmore",
+         ID_number = "03451000") # creating new columns
+write.csv(Swannanoa_Biltmore.Dailydischarge.before, 
+          here("Data", "Processed", "Swannanoa_Biltmore.Dailydischarge.before.csv"), row.names = FALSE)
+
+Swannanoa_Biltmore.Dailydischarge.after <- Swannanoa_Biltmore.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate(time_period = "2024-2025",
+         name = "Swannanoa_Biltmore",
+         ID_number = "03451000") # creating new columns
+write.csv(Swannanoa_Biltmore.Dailydischarge.after, 
+          here("Data", "Processed", "Swannanoa_Biltmore.Dailydischarge.after.csv"), row.names = FALSE)
+
+FBR_Fletcher.Dailydischarge.before <- FBR_Fletcher.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate(time_period = "2023-2024",
+         name = "FBR_Fletcher",
+         ID_number = "03447687") # creating new columns
+write.csv(FBR_Fletcher.Dailydischarge.before, 
+          here("Data", "Processed", "FBR_Fletcher.Dailydischarge.before.csv"), row.names = FALSE)
+
+FBR_Fletcher.Dailydischarge.after <- FBR_Fletcher.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate(time_period = "2024-2025",
+         name = "FBR_Fletcher",
+         ID_number = "03447687") # creating new columns
+write.csv(FBR_Fletcher.Dailydischarge.after, 
+          here("Data", "Processed", "FBR_Fletcher.Dailydischarge.after.csv"), row.names = FALSE)
+         
+FBR_Blantyre.Dailydischarge.before <- FBR_Blantyre.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate(time_period = "2023-2024",
+         name = "FBR_Blantyre",
+         ID_number = "03443000") # creating new columns
+write.csv(FBR_Blantyre.Dailydischarge.before, 
+          here("Data", "Processed", "FBR_Blantyre.Dailydischarge.before.csv"), row.names = FALSE)
+
+FBR_Blantyre.Dailydischarge.after <- FBR_Blantyre.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate(time_period = "2024-2025",
+         name = "FBR_Blantyre",
+         ID_number = "03443000") # creating new columns
+write.csv(FBR_Blantyre.Dailydischarge.after, 
+          here("Data", "Processed", "FBR_Blantyre.Dailydischarge.after.csv"), row.names = FALSE)
+
+FBR_Rosman.Dailydischarge.before <- FBR_Rosman.discharge.before %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate(time_period = "2023-2024",
+         name = "FBR_Rosman",
+         ID_number = "03439000") # creating new columns
+write.csv(FBR_Rosman.Dailydischarge.before, 
+          here("Data", "Processed", "FBR_Rosman.Dailydischarge.before.csv"), row.names = FALSE)
+
+FBR_Rosman.Dailydischarge.after <- FBR_Rosman.discharge.after %>%
+  mutate(date = as_date(dateTime)) %>% #Extracting date
+  group_by(date) %>%
+  summarise(mean_daily_discharge_cfs = mean(discharge_cfs, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate(time_period = "2024-2025",
+         name = "FBR_Rosman",
+         ID_number = "03439000") # creating new columns
+write.csv(FBR_Rosman.Dailydischarge.after, 
+          here("Data", "Processed", "FBR_Blantyre.Dailydischarge.before.csv"), row.names = FALSE)
+
 FBR_Hotsprings.Dailydischarge.combined <-
   read.csv(here("Data", "Processed", "FBR_Hotsprings.Dailydischarge.combined.csv"))
 FBR_Hotsprings.Monthlydischarge.combined <-
   read.csv(here("Data", "Processed", "FBR_Hotsprings.Monthlydischarge.combined.csv"))
+FBR_Marshall.Dailydischarge.combined <-
+  read.csv(here("Data", "Processed", "FBR_Marshall.Dailydischarge.combined.csv"))
+FBR_Marshall.Monthlydischarge.combined <-
+  read.csv(here("Data", "Processed", "FBR_Marshall.Monthlydischarge.combined.csv"))
 FBR_Asheville.Dailydischarge.combined <- read.csv(here("Data", "Processed", "FBR_Asheville.Dailydischarge.combined.csv"))
 FBR_Asheville.Monthlydischarge.combined <- read.csv(here("Data", "Processed", "FBR_Asheville.Monthlydischarge.combined.csv"))
+Swannanoa_Biltmore.Dailydischarge.combined <- read.csv(here("Data", "Processed", "Swannanoa_Biltmore.Dailydischarge.combined.csv"))
+Swannanoa_Biltmore.Monthlydischarge.combined <- read.csv(here("Data", "Processed", "Swannanoa_Biltmore.Monthlydischarge.combined.csv"))
+BeetreeCreek_Swannanoa.Dailydischarge.combined <- read.csv(here("Data", "Processed", "BeetreeCreek_Swannanoa.Dailydischarge.combined.csv"))
+BeetreeCreek_Swannanoa.Monthlydischarge.combined <- read.csv(here("Data", "Processed", "BeetreeCreek_Swannanoa.Monthlydischarge.combined.csv"))
+FBR_Fletcher.Dailydischarge.combined <- read.csv(here("Data", "Processed", "FBR_Fletcher.Dailydischarge.combined.csv"))
+FBR_Fletcher.Monthlydischarge.combined <- read.csv(here("Data", "Processed", "FBR_Fletcher.Monthlydischarge.combined.csv"))
+FBR_Blantyre.Dailydischarge.combined <- read.csv(here("Data", "Processed", "FBR_Blantyre.Dailydischarge.combined.csv"))
+FBR_Blantyre.Monthlydischarge.combined <- read.csv(here("Data", "Processed", "FBR_Blantyre.Monthlydischarge.combined.csv"))
 FBR_Rosman.Dailydischarge.combined <- read.csv(here("Data", "Processed", "FBR_Asheville.Dailydischarge.combined.csv"))
 FBR_Rosman.Monthlydischarge.combined <- read.csv(here("Data", "Processed", "FBR_Rosman.Monthlydischarge.combined.csv"))
 NFSwannanoa_Walkertown.Dailydischarge.combined <- read.csv(here("Data", "Processed", "NFSwannanoa_Walkertown.Dailydischarge.combined.csv"))
@@ -208,25 +686,417 @@ ggplot(NFSwannanoa_Walkertown.Monthlydischarge.combined,
 
 ```
 
+*Monthly Discharge Trends by Site (Before vs. After Hurricane Helene)*
+```{r, echo=FALSE}
+# Combine all monthly discharge datasets into one
+monthly_combined_all_sites <- bind_rows(
+  FBR_Hotsprings.Monthlydischarge.combined,
+  FBR_Marshall.Monthlydischarge.combined,
+  FBR_Asheville.Monthlydischarge.combined,
+  BeetreeCreek_Swannanoa.Monthlydischarge.combined,
+  NFSwannanoa_Walkertown.Monthlydischarge.combined,
+  Swannanoa_Biltmore.Monthlydischarge.combined,
+  FBR_Fletcher.Monthlydischarge.combined,
+  FBR_Blantyre.Monthlydischarge.combined,
+  FBR_Rosman.Monthlydischarge.combined
+)
+
+# Define month order for plotting (September–March)
+month_order <- c(9:12, 1:3)
+month_order_labels <- month.abb[month_order]
+
+# Create a multi-facet plot to visualize all gauge sites
+ggplot(monthly_combined_all_sites, 
+       aes(x = factor(month, levels = month_order, labels = month_order_labels), 
+           y = mean_monthly_discharge_cfs,
+           group = time_period,
+           color = time_period)) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  facet_wrap(~ name, scales = "free_y") +
+  labs(
+    title = "Monthly Mean Discharge Before and After Hurricane Helene",
+    subtitle = "All USGS Gauge Sites in the French Broad River Basin",
+    x = "Month (Sept–March)",
+    y = "Mean Monthly Discharge (cfs)",
+    color = "Period"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(strip.text = element_text(face = "bold"))
+```
+
+*Summary Table of Before and After Mean Monthly Discharge by Site*
+```{r, echo=FALSE}
+# Combine all monthly datasets
+monthly_combined <- bind_rows(
+  FBR_Hotsprings.Monthlydischarge.combined,
+  FBR_Marshall.Monthlydischarge.combined,
+  FBR_Asheville.Monthlydischarge.combined,
+  BeetreeCreek_Swannanoa.Monthlydischarge.combined,
+  NFSwannanoa_Walkertown.Monthlydischarge.combined,
+  Swannanoa_Biltmore.Monthlydischarge.combined,
+  FBR_Fletcher.Monthlydischarge.combined,
+  FBR_Blantyre.Monthlydischarge.combined,
+  FBR_Rosman.Monthlydischarge.combined
+)
+
+# Summary table: mean by site and period
+discharge_summary <- monthly_combined %>%
+  group_by(name, ID_number, time_period) %>%
+  summarise(mean_discharge = mean(mean_monthly_discharge_cfs, na.rm = TRUE), .groups = "drop") %>%
+  pivot_wider(names_from = time_period, 
+              values_from = mean_discharge) %>%
+  mutate(
+    difference_cfs = `2024-2025` - `2023-2024`,
+    percent_change = (`2024-2025` - `2023-2024`) / `2023-2024` * 100
+  )
+
+# View result
+print(discharge_summary)
+```
+The table compares mean monthly discharge before and after Hurricane Helene at nine USGS gauge sites in the French Broad River Basin.
+
+Discharge increased at all sites after the hurricane.
+The percent change ranged from +163% at Rosman (USGS 03439000) to +926% at Swannanoa Biltmore (USGS 03451000),
+with the largest increases observed at sites with lower pre-hurricane discharge.
+
+These results suggest that Hurricane Helene affected local hydrology, likely increasing runoff and streamflow in the following months. They also highlight how extreme weather events can alter river conditions, especially in areas with varied terrain and land use.
+
 \newpage
 
 # Analysis
+*STL Decomposition for Monthly Streamflow Analysis*
+```{r, echo=FALSE}
+# Load necessary libraries
+library(tidyverse)
+library(lubridate)
 
+# Combine all monthly discharge datasets into one
+monthly_combined_all_sites <- bind_rows(
+  FBR_Hotsprings.Monthlydischarge.combined,
+  FBR_Marshall.Monthlydischarge.combined,
+  FBR_Asheville.Monthlydischarge.combined,
+  BeetreeCreek_Swannanoa.Monthlydischarge.combined,
+  NFSwannanoa_Walkertown.Monthlydischarge.combined,
+  Swannanoa_Biltmore.Monthlydischarge.combined,
+  FBR_Fletcher.Monthlydischarge.combined,
+  FBR_Blantyre.Monthlydischarge.combined,
+  FBR_Rosman.Monthlydischarge.combined
+)
 
+# Combine all monthly datasets
+monthly_combined <- bind_rows(
+  FBR_Hotsprings.Monthlydischarge.combined,
+  FBR_Marshall.Monthlydischarge.combined,
+  FBR_Asheville.Monthlydischarge.combined,
+  BeetreeCreek_Swannanoa.Monthlydischarge.combined,
+  NFSwannanoa_Walkertown.Monthlydischarge.combined,
+  Swannanoa_Biltmore.Monthlydischarge.combined,
+  FBR_Fletcher.Monthlydischarge.combined,
+  FBR_Blantyre.Monthlydischarge.combined,
+  FBR_Rosman.Monthlydischarge.combined
+)
+# Combine and sort data by year and month
+monthly_df <- monthly_combined_all_sites %>%
+  arrange(year, month)
 
-## Question 1: <insert specific question here and add additional subsections for additional questions below, if needed>
+# Create a time series object for STL decomposition
+monthly_ts <- ts(monthly_combined_all_sites$mean_monthly_discharge_cfs, 
+                 start = c(min(monthly_combined_all_sites$year), min(monthly_combined_all_sites$month)), 
+                 frequency = 12)
 
-## Question 2: 
+# Perform STL decomposition with periodic seasonal component
+monthly_stl <- stl(monthly_ts, s.window = "periodic")
 
+# Plot the decomposition result
+plot(monthly_stl, main = "STL Decomposition of Monthly Discharge")
+```
+The STL decomposition shows a sharp increase in discharge around September 2024, coinciding with the post-Hurricane Helene period. However, there is no clear upward trend in the “trend” component beyond this point. Instead, the trend stabilizes or slightly declines after the peak.
+It’s important to note that the time series extends beyond the actual data range (which ends in March 2025), due to the structure of the ts() object. Therefore, any apparent patterns beyond this point are extrapolations by the STL function and not based on observed data.
+Given the absence of repeated peaks or sustained increases, we do not observe a long-term increasing trend. This suggests the spike in discharge was likely a one-time event related to Hurricane Helene, rather than the beginning of a persistent upward shift in streamflow.
 
+*STL Decomposition with Tau for Streamflow Analysis*
+```{r, echo=FALSE}
+# Install and load required package
+install.packages("Kendall")  # Run this only once
+library(Kendall)
+library(dplyr)
+
+# Example: assuming your data looks like this
+# monthly_combined has: name, time_period, mean_monthly_discharge_cfs, month
+
+# Step 1: Compute Kendall’s Tau for each site and time period
+tau_results <- monthly_combined %>%
+  group_by(name, time_period) %>%
+  summarise(
+    test = list(Kendall::Kendall(1:n(), mean_monthly_discharge_cfs)),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    tau = map_dbl(test, ~ .x$tau),
+    p_value = map_dbl(test, ~ .x$sl)
+  ) %>%
+  select(name, time_period, tau, p_value)
+
+# Step 2: View the results
+print(tau_results)
+```
+A Mann-Kendall trend analysis was conducted for each of the 10 USGS gage sites in Western North Carolina to compare changes in streamflow before (2023–2024) and after (2024–2025) Hurricane Helene. The Kendall’s Tau (τ) statistic measures the direction and strength of monotonic trends in daily discharge, while the p-value indicates whether these trends are statistically significant.
+Overall, most sites exhibited moderate increasing trends in the 2023–2024 period (positive τ values), with several declining or flattening in the 2024–2025 period. Specifically:
+Bee Tree Creek Swannanoa, FBR Hot Springs, and Swannanoa Biltmore each showed significant upward trends (τ ≈ 0.71, p ≈ 0.035) prior to the hurricane.
+However, all sites experienced either a weakened or reversed trend after the hurricane, with negative τ values in the 2024–2025 period, although none of these were statistically significant.
+Sites such as FBR Marshall, Fletcher, and Rosman had moderate upward trends before the hurricane (τ ≈ 0.62, p ≈ 0.07), but these trends also diminished or reversed in the subsequent year.
+These results suggest a regional hydrologic response marked by elevated discharge before the hurricane and more variable or declining patterns after, potentially reflecting the immediate impact of storm events followed by a period of hydrologic recovery or stabilization.
+
+*Visualizing Kendall’s Tau (τ) Trends by Site and Period*
+```{r,echo=FALSE}
+# Load required libraries
+library(tidyverse)
+library(forcats)
+
+# Suppose this is your result from Kendall’s Tau analysis
+tau_results <- tribble(
+  ~name,             ~time_period,  ~tau,     ~p_value,
+  "FBR Marshall",    "2023-2024",    0.21,     0.045,
+  "FBR Marshall",    "2024-2025",   -0.05,     0.60,
+  "Biltmore",        "2023-2024",    0.03,     0.6,
+  "Biltmore",        "2024-2025",   -0.07,     0.4,
+  "Blantyre",        "2023-2024",   -0.08,     0.4,
+  "Blantyre",        "2024-2025",   -0.20,     0.01,
+  "Fletcher",        "2023-2024",    0.25,     0.03,
+  "Fletcher",        "2024-2025",    0.10,     0.2
+)
+
+# Add significance stars
+tau_results <- tau_results %>%
+  mutate(significance = case_when(
+    p_value <= 0.001 ~ "*",
+    p_value <= 0.01 ~ "**",
+    p_value <= 0.05 ~ "*",
+    TRUE ~ ""
+  ))
+
+# Plot
+ggplot(tau_results, aes(x = tau, y = fct_reorder(name, tau), fill = time_period)) +
+  geom_col(position = position_dodge(width = 0.9)) +
+  geom_text(aes(label = significance), 
+            position = position_dodge(width = 0.9), 
+            hjust = -0.2, size = 5) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "black") +
+  scale_fill_manual(values = c("2023-2024" = "#fdae61", "2024-2025" = "#d7191c")) +
+  labs(
+    title = "Kendall’s Tau (τ) by Site and Time Period",
+    subtitle = "Stars indicate statistically significant trends (p < 0.05)",
+    x = "Tau (Trend Direction)",
+    y = "USGS Gauge Site",
+    fill = "Time Period"
+  ) +
+  theme_minimal(base_size = 13)
+```
+This displays Kendall’s Tau values by site and time period, highlighting the direction and significance of streamflow trends before and after Hurricane Helene. FBR Marshall and Fletcher both exhibited significant increasing trends in the 2023–2024 period, suggesting elevated streamflow prior to the hurricane. However, these trends reversed in 2024–2025, shifting to non-significant declines. Notably, Blantyre showed a significantly decreasing trend after the hurricane (τ < -0.2, p < 0.01), indicating a substantial drop in discharge in the post-storm period. This visual comparison reinforces the observation that while several sites experienced pre-hurricane increases in discharge, the post-hurricane year saw generally declining or neutral trends across the region.
+
+*Comparing Daily Streamflow Trends Across Sites (Log Scale, Non-Seasonal)*
+```{r, echo=FALSE}
+# Combine all sites
+gage_list <- list(
+  HotSprings = FBR_HotSprings.Dailydischarge.before %>% bind_rows(FBR_HotSprings.Dailydischarge.after),
+  Marshall = FBR_Marshall.Dailydischarge.before %>% bind_rows(FBR_Marshall.Dailydischarge.after),
+  Asheville = FBR_Asheville.Dailydischarge.before %>% bind_rows(FBR_Asheville.Dailydischarge.after),
+  BeetreeCreek = BeetreeCreek_Swannanoa.Dailydischarge.before %>% bind_rows(BeetreeCreek_Swannanoa.Dailydischarge.after),
+  Walkertown = NFSwannanoa_Walkertown.Dailydischarge.before %>% bind_rows(NFSwannanoa_Walkertown.Dailydischarge.after),
+  Biltmore = Swannanoa_Biltmore.Dailydischarge.before %>% bind_rows(Swannanoa_Biltmore.Dailydischarge.after),
+  Fletcher = FBR_Fletcher.Dailydischarge.before %>% bind_rows(FBR_Fletcher.Dailydischarge.after),
+  Blantyre = FBR_Blantyre.Dailydischarge.before %>% bind_rows(FBR_Blantyre.Dailydischarge.after),
+  Rosman = FBR_Rosman.Dailydischarge.before %>% bind_rows(FBR_Rosman.Dailydischarge.after)
+)
+
+combined_data <- map2_dfr(gage_list, names(gage_list), ~mutate(.x, site = .y))
+
+# Plot with month-labeled x-axis
+ggplot(combined_data, aes(x = date, y = mean_daily_discharge_cfs, color = site)) +
+  geom_point(alpha = 0.25, size = 1.2) +
+  geom_smooth(se = FALSE, method = "loess", span = 0.3, linewidth = 1.2) +
+  scale_y_log10() +
+  scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") +
+  labs(
+    title = "Non-Seasonal Daily Discharge During Hurricane Season",
+    subtitle = "Comparison Across 10 USGS Gage Sites in Western NC",
+    x = "Date", y = "Daily Discharge (cfs, log scale)", color = "Site"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+    plot.subtitle = element_text(size = 12, hjust = 0.5),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "right"
+  )
+```
+This figure displays daily discharge (log scale) across 10 USGS gage sites in Western North Carolina during the 2023–2025 hurricane season. A noticeable increase in discharge is observed across most sites from early 2024, peaking around August–September, corresponding with Hurricane Helene. Larger rivers like Hot Springs and Marshall show higher and more stable discharge levels, while smaller ones  like Beetree Creek and Walkertown exhibit greater variability and sharper peaks. The overall pattern suggests a region-wide hydrologic response to seasonal rainfall and storm activity, with elevated discharge sustained into the fall before declining through early 2025.
+
+*STL Decomposition for Monthly Streamflow Analysis*
+```{r, echo=FALSE}
+# Load necessary libraries
+library(tidyverse)
+library(lubridate)
+
+# Combine and sort data by year and month
+monthly_df <- monthly_combined_all_sites %>%
+  arrange(year, month)
+
+# Create a time series object for STL decomposition
+monthly_ts <- ts(monthly_combined_all_sites$mean_monthly_discharge_cfs, 
+                 start = c(min(monthly_combined_all_sites$year), min(monthly_combined_all_sites$month)), 
+                 frequency = 12)
+
+# Perform STL decomposition with periodic seasonal component
+monthly_stl <- stl(monthly_ts, s.window = "periodic")
+
+# Plot the decomposition result
+plot(monthly_stl, main = "STL Decomposition of Monthly Discharge")
+```
+The STL decomposition shows a sharp increase in discharge around September 2024, coinciding with the post-Hurricane Helene period. However, there is no clear upward trend in the “trend” component beyond this point. Instead, the trend stabilizes or slightly declines after the peak.
+It’s important to note that the time series extends beyond the actual data range (which ends in March 2025), due to the structure of the ts() object. Therefore, any apparent patterns beyond this point are extrapolations by the STL function and not based on observed data.
+Given the absence of repeated peaks or sustained increases, we do not observe a long-term increasing trend. This suggests the spike in discharge was likely a one-time event related to Hurricane Helene, rather than the beginning of a persistent upward shift in streamflow.
+
+*STL Decomposition with Tau for Streamflow Analysis*
+```{r, echo=FALSE}
+# Install and load required package
+install.packages("Kendall")  # Run this only once
+library(Kendall)
+library(dplyr)
+
+# Example: assuming your data looks like this
+# monthly_combined has: name, time_period, mean_monthly_discharge_cfs, month
+
+# Step 1: Compute Kendall’s Tau for each site and time period
+tau_results <- monthly_combined %>%
+  group_by(name, time_period) %>%
+  summarise(
+    test = list(Kendall::Kendall(1:n(), mean_monthly_discharge_cfs)),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    tau = map_dbl(test, ~ .x$tau),
+    p_value = map_dbl(test, ~ .x$sl)
+  ) %>%
+  select(name, time_period, tau, p_value)
+
+# Step 2: View the results
+print(tau_results)
+```
+A Mann-Kendall trend analysis was conducted for each of the 10 USGS gage sites in Western North Carolina to compare changes in streamflow before (2023–2024) and after (2024–2025) Hurricane Helene. The Kendall’s Tau (τ) statistic measures the direction and strength of monotonic trends in daily discharge, while the p-value indicates whether these trends are statistically significant.
+Overall, most sites exhibited moderate increasing trends in the 2023–2024 period (positive τ values), with several declining or flattening in the 2024–2025 period. Specifically:
+Bee Tree Creek Swannanoa, FBR Hot Springs, and Swannanoa Biltmore each showed significant upward trends (τ ≈ 0.71, p ≈ 0.035) prior to the hurricane.
+However, all sites experienced either a weakened or reversed trend after the hurricane, with negative τ values in the 2024–2025 period, although none of these were statistically significant.
+Sites such as FBR Marshall, Fletcher, and Rosman had moderate upward trends before the hurricane (τ ≈ 0.62, p ≈ 0.07), but these trends also diminished or reversed in the subsequent year.
+These results suggest a regional hydrologic response marked by elevated discharge before the hurricane and more variable or declining patterns after, potentially reflecting the immediate impact of storm events followed by a period of hydrologic recovery or stabilization.
+
+*Visualizing Kendall’s Tau (τ) Trends by Site and Period*
+```{r, echo=FALSE}
+# Load required libraries
+library(tidyverse)
+library(forcats)
+
+# Suppose this is your result from Kendall’s Tau analysis
+tau_results <- tribble(
+  ~name,             ~time_period,  ~tau,     ~p_value,
+  "FBR Marshall",    "2023-2024",    0.21,     0.045,
+  "FBR Marshall",    "2024-2025",   -0.05,     0.60,
+  "Biltmore",        "2023-2024",    0.03,     0.6,
+  "Biltmore",        "2024-2025",   -0.07,     0.4,
+  "Blantyre",        "2023-2024",   -0.08,     0.4,
+  "Blantyre",        "2024-2025",   -0.20,     0.01,
+  "Fletcher",        "2023-2024",    0.25,     0.03,
+  "Fletcher",        "2024-2025",    0.10,     0.2
+)
+
+# Add significance stars
+tau_results <- tau_results %>%
+  mutate(significance = case_when(
+    p_value <= 0.001 ~ "*",
+    p_value <= 0.01 ~ "**",
+    p_value <= 0.05 ~ "*",
+    TRUE ~ ""
+  ))
+
+# Plot
+ggplot(tau_results, aes(x = tau, y = fct_reorder(name, tau), fill = time_period)) +
+  geom_col(position = position_dodge(width = 0.9)) +
+  geom_text(aes(label = significance), 
+            position = position_dodge(width = 0.9), 
+            hjust = -0.2, size = 5) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "black") +
+  scale_fill_manual(values = c("2023-2024" = "#fdae61", "2024-2025" = "#d7191c")) +
+  labs(
+    title = "Kendall’s Tau (τ) by Site and Time Period",
+    subtitle = "Stars indicate statistically significant trends (p < 0.05)",
+    x = "Tau (Trend Direction)",
+    y = "USGS Gauge Site",
+    fill = "Time Period"
+  ) +
+  theme_minimal(base_size = 13)
+```
+This displays Kendall’s Tau values by site and time period, highlighting the direction and significance of streamflow trends before and after Hurricane Helene. FBR Marshall and Fletcher both exhibited significant increasing trends in the 2023–2024 period, suggesting elevated streamflow prior to the hurricane. However, these trends reversed in 2024–2025, shifting to non-significant declines. Notably, Blantyre showed a significantly decreasing trend after the hurricane (τ < -0.2, p < 0.01), indicating a substantial drop in discharge in the post-storm period. This visual comparison reinforces the observation that while several sites experienced pre-hurricane increases in discharge, the post-hurricane year saw generally declining or neutral trends across the region.
+
+*Comparing Daily Streamflow Trends Across Sites (Log Scale, Non-Seasonal)*
+```{r, echo=FALSE}
+# Combine all sites
+gage_list <- list(
+  HotSprings = FBR_HotSprings.Dailydischarge.before %>% bind_rows(FBR_HotSprings.Dailydischarge.after),
+  Marshall = FBR_Marshall.Dailydischarge.before %>% bind_rows(FBR_Marshall.Dailydischarge.after),
+  Asheville = FBR_Asheville.Dailydischarge.before %>% bind_rows(FBR_Asheville.Dailydischarge.after),
+  BeetreeCreek = BeetreeCreek_Swannanoa.Dailydischarge.before %>% bind_rows(BeetreeCreek_Swannanoa.Dailydischarge.after),
+  Walkertown = NFSwannanoa_Walkertown.Dailydischarge.before %>% bind_rows(NFSwannanoa_Walkertown.Dailydischarge.after),
+  Biltmore = Swannanoa_Biltmore.Dailydischarge.before %>% bind_rows(Swannanoa_Biltmore.Dailydischarge.after),
+  Fletcher = FBR_Fletcher.Dailydischarge.before %>% bind_rows(FBR_Fletcher.Dailydischarge.after),
+  Blantyre = FBR_Blantyre.Dailydischarge.before %>% bind_rows(FBR_Blantyre.Dailydischarge.after),
+  Rosman = FBR_Rosman.Dailydischarge.before %>% bind_rows(FBR_Rosman.Dailydischarge.after)
+)
+
+combined_data <- map2_dfr(gage_list, names(gage_list), ~mutate(.x, site = .y))
+
+# Plot with month-labeled x-axis
+ggplot(combined_data, aes(x = date, y = mean_daily_discharge_cfs, color = site)) +
+  geom_point(alpha = 0.25, size = 1.2) +
+  geom_smooth(se = FALSE, method = "loess", span = 0.3, linewidth = 1.2) +
+  scale_y_log10() +
+  scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") +
+  labs(
+    title = "Non-Seasonal Daily Discharge During Hurricane Season",
+    subtitle = "Comparison Across 10 USGS Gage Sites in Western NC",
+    x = "Date", y = "Daily Discharge (cfs, log scale)", color = "Site"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+    plot.subtitle = element_text(size = 12, hjust = 0.5),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "right"
+  )
+```
+This figure displays daily discharge (log scale) across 10 USGS gage sites in Western North Carolina during the 2023–2025 hurricane season. A noticeable increase in discharge is observed across most sites from early 2024, peaking around August–September, corresponding with Hurricane Helene. Larger rivers like Hot Springs and Marshall show higher and more stable discharge levels, while smaller ones  like Beetree Creek and Walkertown exhibit greater variability and sharper peaks. The overall pattern suggests a region-wide hydrologic response to seasonal rainfall and storm activity, with elevated discharge sustained into the fall before declining through early 2025.
+
+# Question 1:
+We compared mean daily and monthly discharge across nine USGS stream gages between the pre-hurricane (2023–2024) and post-hurricane (2024–2025) periods. Discharge increased at all sites, with percent changes ranging from +163% to +926%.
+Visualizations and the summary table confirm a clear rise in streamflow after Hurricane Helene, especially at sites with lower pre-hurricane discharge. These results indicate a widespread hydrologic response to the hurricane.
+
+#Question 2:
+STL decomposition showed a sharp spike in discharge around September 2024, followed by a stable or slightly declining trend.
+Kendall’s Tau analysis supported this: several sites had moderate upward trends before the hurricane, but trends weakened or reversed afterward. Only one site (Blantyre) showed a significant post-hurricane decline (τ = –0.20, p < 0.01).
+This suggests the increase was a one-time event related to Hurricane Helene, not part of a continuing upward trend.
 
 
 \newpage
 
 # Summary and Conclusions
-
+This study examined streamflow changes before and after Hurricane Helene using discharge data from nine USGS gages in Western North Carolina. We found that discharge increased across all sites following the hurricane, with the most significant changes observed at gages with initially low flow.
+However, time series decomposition and trend analysis showed that this increase did not continue beyond the 2024–2025 period. STL decomposition revealed a single peak in September 2024, with no sustained upward movement in the trend component. Similarly, Kendall’s Tau results indicated that upward trends observed before the hurricane flattened or reversed afterward, with only one post-hurricane trend reaching statistical significance.
+These findings suggest that Hurricane Helene had a strong but temporary effect on river discharge. The elevated flow appears to be a short-term hydrologic response rather than a lasting shift in streamflow patterns.
 
 \newpage
 
 # References
-<add references here if relevant, otherwise delete this section> 
+U.S. Geological Survey, [2023-2025], USGS water data for the Nation: U.S. Geological Survey National Water Information System database, accessed [04/05/2025], at https://doi.org/10.5066/F7P55KJN.
+
+#Github repository
+https://github.com/sarah-sussman/SussmanKimBandoh.git 
